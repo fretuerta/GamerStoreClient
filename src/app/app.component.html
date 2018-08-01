@@ -1,20 +1,57 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+  <div class="titleLangSelect">
+    <div class="c3"></div>
+    <div class="titleText c3"><h1>GamerStore</h1></div>
+    <div class="c3">
+        <mat-form-field>
+            <mat-select placeholder="{{'language'|translate}}" [(value)]="currentLanguage" (selectionChange)="updateLanguage()">
+              <mat-option *ngFor="let lang of langs" value="{{lang.value}}">
+                {{lang.value | translate}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+  </div>
+  <button mat-stroked-button [routerLink]="['/']">
+    <i class="material-icons">home</i> {{'home' | translate}}</button>
+  <button mat-stroked-button [matMenuTriggerFor]="editar">
+    <i class="material-icons">border_color</i> {{'edit' | translate}}</button>
+  <button mat-stroked-button>
+    <i class="material-icons">euro_symbol</i> {{'sale' | translate}}</button>
+  <button mat-stroked-button>
+    <i class="material-icons">swap_horiz</i> {{'rent' | translate}}</button>
 
+  <mat-menu #editar="matMenu">
+    <button mat-menu-item [routerLink]="['/plataformas']">
+      <i class="material-icons">phonelink</i> {{'platforms'|translate}}</button>
+    <button mat-menu-item [routerLink]="['/juegos']">
+      <i class="material-icons">videogame_asset</i> {{'games'|translate}}</button>
+      <button mat-menu-item [routerLink]="['/articulos']">
+        <i class="material-icons">book</i> {{'items'|translate}}</button>
+  </mat-menu>
+
+  <!--mat-menu #pc="matMenu">
+    <button mat-menu-item [routerLink]="['/plataformas']">Linux</button>
+    <button mat-menu-item [routerLink]="['/juegos']">Windows</button>
+  </mat-menu>
+
+  <mat-menu #consolas="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="xbox">XBOX</button>
+    <button mat-menu-item [matMenuTriggerFor]="playstation">PlayStation</button>
+    <button mat-menu-item>Wii</button>
+  </mat-menu>
+
+  <mat-menu #xbox="matMenu">
+    <button mat-menu-item>XBOX</button>
+    <button mat-menu-item>XBOX 360</button>
+    <button mat-menu-item>XBOX ONE</button>
+  </mat-menu>
+
+  <mat-menu #playstation="matMenu">
+    <button mat-menu-item>PlayStation</button>
+    <button mat-menu-item>PlayStation 2</button>
+    <button mat-menu-item>PlayStation 3</button>
+    <button mat-menu-item>PlayStation 4</button>
+  </mat-menu-->
+</div>
+<router-outlet></router-outlet>

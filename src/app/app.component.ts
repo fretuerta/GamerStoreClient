@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from './translate/translate.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  public supportedLanguages: any[];
+  currentLanguage: string;
+
+  langs = [{ value: 'es' },
+           { value: 'en' }]
+
+  constructor(private translateService: TranslateService) { }
+
+  ngOnInit() {
+    this.currentLanguage = 'es';
+    this.updateLanguage();
+  }
+
+  updateLanguage() {
+    this.translateService.use(this.currentLanguage);
+  }
 }

@@ -1,0 +1,29 @@
+.addButton {
+    color: deeppink;
+}
+
+.flex_box {
+    display: flex;
+}
+
+table {
+    width: 100%;
+}
+
+.table_box {
+    height: 400px;
+    overflow: auto;
+}
+
+.form_block {
+    margin: 15px;
+}
+
+.buttons_block {
+    margin: 15px;
+}
+
+.clearButton{
+    vertical-align: bottom;
+    cursor: pointer;
+}

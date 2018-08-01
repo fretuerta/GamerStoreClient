@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.c1 { width: 100%; }
+.c2 { width: 50%; }
+.c3 { width: 33%; }
+.c3x2 { width: 66% }
+.c4 { width: 25%; }
+.c4x3 { width: 75% }
