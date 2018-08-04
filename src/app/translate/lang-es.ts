@@ -4,7 +4,10 @@ export const LANG_ES_TRANS = {
     'en': 'Inglés',
     'home': 'Inicio',
     'edit': 'Editar',
+    'format': 'Formato',
+    'platform': 'Plataforma',
     'platforms': 'Plataformas',
+    'game': 'Juego',
     'games': 'Juegos',
     'sale': 'Venta',
     'rent': 'Alquiler',
@@ -24,5 +27,8 @@ export const LANG_ES_TRANS = {
     'search': 'Buscar',
     'found': 'Encontrado',
     'of': 'de',
-    'cover': 'Carátula'
+    'cover': 'Carátula',
+    'quantity': 'Cantidad',
+    'rent_price': 'Precio Alquiler',
+    'sale_price': 'Precio Venta'
 }

@@ -11,7 +11,7 @@ export class ArticulosComponent implements OnInit {
 
   articulos: any[];
   articulosToShow: any[];
-  displayedColumns: string[] = ['id', 'nombre', 'action'];
+  displayedColumns: string[] = ['id', 'juego', 'plataforma', 'formato', 'cantidad', 'precioAlquiler', 'precioVenta', 'action'];
   editing: boolean = false;
   element: any = {};
   searchText: string = '';

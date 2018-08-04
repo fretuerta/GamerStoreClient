@@ -4,7 +4,10 @@ export const LANG_EN_TRANS = {
     'en': 'English',
     'home': 'Home',
     'edit': 'Edit',
+    'format': 'Format',
+    'platform': 'Plataform',
     'platforms': 'Platforms',
+    'game': 'Game',
     'games': 'Games',
     'sale': 'Sale',
     'rent': 'Rent',
@@ -24,5 +27,8 @@ export const LANG_EN_TRANS = {
     'search': 'Search',
     'found': 'Found',
     'of': 'of',
-    'cover': 'Cover'
+    'cover': 'Cover',
+    'quantity': 'Quantity',
+    'rent_price': 'Rent Price',
+    'sale_price': 'Sale Price'
 }
