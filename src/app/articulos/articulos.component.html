@@ -1,16 +1,16 @@
 <h1><i class="material-icons">book</i> {{'items'|translate}}</h1>
 <div class="form_block">
   <label>{{'search'|translate}}:
-    <input type="text" [(ngModel)]="searchText" (keyup)="updatePlataformasToShow()">
+    <input type="text" [(ngModel)]="searchText" (keyup)="updateArticulosToShow()">
   </label>
   <i class="material-icons clearButton" (click)="clearSearchText()">remove_circle</i>
-  <span *ngIf="plataformas && plataformasToShow">
-      {{'found'|translate}} {{plataformasToShow.length}} {{'of'|translate}} {{plataformas.length}}
+  <span *ngIf="articulos && articulosToShow">
+      {{'found'|translate}} {{articulosToShow.length}} {{'of'|translate}} {{articulos.length}}
   </span>
 </div>
 <div class="flex_box">
-  <div class="c2 table_box mat-elevation-z8">
-    <table mat-table [dataSource]="plataformasToShow" class="mat-elevation-z8">
+  <div class="c1 table_box mat-elevation-z8">
+    <table mat-table [dataSource]="articulosToShow" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -66,7 +66,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-  <div *ngIf="editing" class="c2">
+  <div *ngIf="editing" class="c3">
     <div class="form_block">
       <label>{{'name'|translate}}:
         <input type="text" [(ngModel)]="element.nombre">

@@ -27,3 +27,7 @@ table {
     vertical-align: bottom;
     cursor: pointer;
 }
+
+.coverButton img {
+    max-height: 75px;
+}

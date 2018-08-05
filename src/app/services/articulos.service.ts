@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
@@ -6,23 +7,23 @@ import { Http } from '@angular/http';
 })
 export class ArticulosService {
 
-  url: string = "http://localhost:8080/GamerStore/";
+  baseUrl: string = environment.baseUrl;
 
   constructor( protected http: Http) { }
 
   public readArticulos(): Promise<any> {
-    return this.http.get(this.url + 'articulos').toPromise();
+    return this.http.get(this.baseUrl + 'articulos').toPromise();
   }
   
   public deleteArticulo(id: number): Promise<any> {
-    return this.http.delete(this.url + 'articulo/' + id).toPromise();
+    return this.http.delete(this.baseUrl + 'articulo/' + id).toPromise();
   }
 
   public updateArticulo(element: any): Promise<any> {
-    return this.http.put(this.url + 'articulo/' + element.id, element ).toPromise();
+    return this.http.put(this.baseUrl + 'articulo/' + element.id, element ).toPromise();
   }
 
   public addArticulo(element: any): Promise<any> {
-    return this.http.post(this.url + 'articulo', element).toPromise();
+    return this.http.post(this.baseUrl + 'articulo', element).toPromise();
   }
 }

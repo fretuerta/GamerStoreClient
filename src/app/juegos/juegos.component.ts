@@ -12,7 +12,7 @@ export class JuegosComponent implements OnInit {
   
   juegos: any[];
   juegosToShow: any[];
-  displayedColumns: string[] = ['id', 'nombre', 'action'];
+  displayedColumns: string[] = ['id', 'nombre', 'caratula', 'action'];
   editing: boolean = false;
   element: any = {};
   searchText: string = '';
