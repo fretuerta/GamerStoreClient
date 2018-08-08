@@ -11,13 +11,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PlataformasComponent } from './plataformas/plataformas.component';
-import { routing, appRoutingProviders } from './app.routing';
 import { JuegosComponent } from './juegos/juegos.component';
 import { HomeComponent } from './home/home.component';
 import { TranslateService } from './translate/translate.service';
 import { FormsModule } from '@angular/forms';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { MatComponentsModule } from './mat-components.module';
+import { RouterModule } from '@angular/router';
+
+const appRoutingProviders: any = [];
 
 @NgModule({
   declarations: [
@@ -31,9 +33,14 @@ import { MatComponentsModule } from './mat-components.module';
   imports: [
     BrowserAnimationsModule,
     FormsModule,
-    routing,
     HttpModule,
-    MatComponentsModule
+    MatComponentsModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'plataformas', component: PlataformasComponent },
+      { path: 'juegos', component: JuegosComponent },
+      { path: 'articulos', component: ArticulosComponent }
+    ])
   ],
   providers: [
     appRoutingProviders,
