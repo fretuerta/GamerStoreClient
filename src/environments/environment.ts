@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:8081/GamerStore/"
+  baseUrl: "http://localhost:8081/GamerStore/api/"
 };
 
 /*

@@ -14,7 +14,7 @@ export class PlataformasService {
   public readPlataformas(): Promise<any> {
     return this.http.get(this.baseUrl + 'plataformas').toPromise();
   }
-  
+
   public deletePlataforma(id: number): Promise<any> {
     return this.http.delete(this.baseUrl + 'plataforma/' + id).toPromise();
   }
@@ -24,7 +24,7 @@ export class PlataformasService {
   }
 
   public addPlataforma(element: any): Promise<any> {
-    let post = { nombre: element.nombre }
+    const post = { nombre: element.nombre };
     return this.http.post(this.baseUrl + 'plataforma', post).toPromise();
   }
 
