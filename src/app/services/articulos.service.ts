@@ -14,7 +14,7 @@ export class ArticulosService {
   public readArticulos(): Promise<any> {
     return this.http.get(this.baseUrl + 'articulos').toPromise();
   }
-  
+
   public deleteArticulo(id: number): Promise<any> {
     return this.http.delete(this.baseUrl + 'articulo/' + id).toPromise();
   }
