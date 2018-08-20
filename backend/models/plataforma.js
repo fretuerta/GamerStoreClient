@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
-const postSchema = mongoose.Schema({
+const plataformaSchema = mongoose.Schema({
   nombre: { type: String, required: true }
 });
+
+module.exports = mongoose.model('Plataforma', plataformaSchema);

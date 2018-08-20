@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
+import { Plataforma } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class PlataformasService {
   }
 
   public updatePlataforma(element: any): Promise<any> {
-    return this.http.put(this.baseUrl + 'plataforma/' + element.id, element ).toPromise();
+    return this.http.put(this.baseUrl + 'plataforma/' + element._id, element ).toPromise();
   }
 
   public addPlataforma(element: any): Promise<any> {

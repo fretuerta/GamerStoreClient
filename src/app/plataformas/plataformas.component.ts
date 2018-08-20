@@ -10,14 +10,14 @@ export class PlataformasComponent implements OnInit {
 
   plataformas: any[];
   plataformasToShow: any[];
-  displayedColumns: string[] = ['id', 'nombre', 'action'];
-  editing: boolean = false;
+  displayedColumns: string[] = ['nombre', 'action'];
+  editing = false;
   element: any = {};
-  searchText: string = '';
+  searchText = '';
 
   constructor( protected plataformasService: PlataformasService) { }
 
-  ngOnInit() { this.readPlataformas() }
+  ngOnInit() { this.readPlataformas(); }
 
   updatePlataformasToShow() {
     this.plataformasToShow = [];
@@ -36,7 +36,6 @@ export class PlataformasComponent implements OnInit {
   readPlataformas() {
     this.plataformasService.readPlataformas().then(plataformas => {
       this.plataformas = plataformas.json();
-      // this.plataformas = plataformas;
       this.updatePlataformasToShow();
     });
   }
@@ -47,10 +46,10 @@ export class PlataformasComponent implements OnInit {
   }
 
   remove(id: number) {
-    this.plataformasService.deletePlataforma(id).then( plataformas => {
-      this.plataformas = plataformas.json();
-      this.updatePlataformasToShow();
-    })
+    this.plataformasService.deletePlataforma(id).then( () => {
+      // this.plataformas = plataformas.json();
+      this.readPlataformas();
+    });
   }
 
   add() {
@@ -63,18 +62,16 @@ export class PlataformasComponent implements OnInit {
   }
 
   saveElement() {
-    if (this.element.id) {
+    if (this.element._id) {
       this.plataformasService.updatePlataforma(this.element).then(plataformas => {
-        this.plataformas = plataformas.json();
-        this.updatePlataformasToShow();
+        this.readPlataformas();
         this.editing = false;
-      })
+      });
     } else {
       this.plataformasService.addPlataforma(this.element).then(plataformas => {
-        this.plataformas = plataformas.json();
-        this.updatePlataformasToShow();
+        this.readPlataformas();
         this.editing = false;
-      })
+      });
     }
   }
 }

@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { MatComponentsModule } from './mat-components.module';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './auth/login/login.component';
 
 const appRoutingProviders: any = [];
 
@@ -28,7 +29,8 @@ const appRoutingProviders: any = [];
     PlataformasComponent,
     JuegosComponent,
     HomeComponent,
-    ArticulosComponent
+    ArticulosComponent,
+    LoginComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -37,6 +39,7 @@ const appRoutingProviders: any = [];
     MatComponentsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'plataformas', component: PlataformasComponent },
       { path: 'juegos', component: JuegosComponent },
       { path: 'articulos', component: ArticulosComponent }

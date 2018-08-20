@@ -1,7 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
+
+const plataformaRoutes = require('./routes/plataforma');
 
 const app = express();
+mongoose.connect('mongodb://localhost:27017/GamerStore')
+  .then(() => {
+    console.log('Connected to database!');
+  })
+  .catch(() => {
+    console.log('Connection failed!');
+  })
 
 app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,19 +28,6 @@ app.use((req, res, next)=> {
   next();
 })
 
-app.post('/GamerStore/api/plataforma', (req, res, next) => {
-  const plataforma = req.body;
-  console.log(plataforma);
-  res.status(201).json([]);
-});
-
-app.get('/GamerStore/api/plataformas',(req, res, next) => {
-  const plataformas = [
-    { id: 1, nombre: 'Playstation 1' },
-    { id: 2, nombre: 'Playstation 2' },
-    { id: 3, nombre: 'Playstation 3' }
-  ];
-  res.status(200).json(plataformas);
-});
+app.use(plataformaRoutes);
 
 module.exports = app;
