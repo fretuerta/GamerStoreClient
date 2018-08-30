@@ -22,6 +22,7 @@ export class JuegosComponent implements OnInit {
   editing = false;
   element: any = {};
   searchText = '';
+  isScanningBarCode = false;
 
   constructor( protected juegosService: JuegosService) { }
 
@@ -29,11 +30,13 @@ export class JuegosComponent implements OnInit {
 
   scanBarCode(up: boolean) {
     up ? this.BarecodeScanner.start() : this.BarecodeScanner.stop();
+    this.isScanningBarCode = up;
   }
 
   onValueChanges(value) {
     this.element.codigo = value.code;
     this.BarecodeScanner.stop();
+    this.isScanningBarCode = false;
   }
 
   updateJuegosToShow() {
