@@ -1,5 +1,9 @@
 <h1><i class="material-icons">videogame_asset</i> {{'games'|translate}}</h1>
 <div class="form_block">
+  <div class="barcodeScanner">
+    <barcode-scanner-livestream [hidden]="!this.BarecodeScanner.isStarted" type="code_128" (valueChanges)="onValueChanges($event)"></barcode-scanner-livestream>
+    <div><button  mat-stroked-button color="danger" (click)="scanBarCode(false)"><i class="material-icons">close</i> Cancelar </button></div>
+  </div>
   <label>{{'search'|translate}}:
     <input type="text" [(ngModel)]="searchText" (keyup)="updateJuegosToShow()">
   </label>
@@ -11,14 +15,16 @@
 <div class="flex_box">
   <div class="c1 table_box mat-elevation-z8">
     <table mat-table [dataSource]="juegosToShow" class="mat-elevation-z8">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
       <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef> {{'name'|translate}} </th>
         <td mat-cell *matCellDef="let element">
           <button mat-button (click)="edit(element)"> {{element.nombre}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef> {{'code'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="edit(element)"> {{element.codigo}} </button>
         </td>
       </ng-container>
       <ng-container matColumnDef="caratula">
@@ -32,7 +38,7 @@
           <button mat-button (click)="add()" class="addButton"> {{'add'|translate}} </button>
         </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="remove(element.id)"> {{'erase'|translate}} </button>
+          <button mat-button (click)="remove(element._id)"> {{'erase'|translate}} </button>
         </td>
       </ng-container>
 
@@ -45,6 +51,10 @@
       <p>{{'name'|translate}}:
         <input type="text" [(ngModel)]="element.nombre">
       </p>
+      <p>{{'code'|translate}}:
+        <input type="text" [(ngModel)]="element.codigo">
+      </p>
+      <button mat-stroked-button color="primary" (click)="scanBarCode(true)"><i class="material-icons">view_array</i> Scanear</button>
       <p>{{'cover'|translate}}:
         <input type="file" accept="image/jpeg" (change)="onFileChange($event)" #fileInput>
         <i class="material-icons clearButton" (click)="resetImage()">delete</i>

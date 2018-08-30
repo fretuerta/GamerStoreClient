@@ -20,6 +20,8 @@ import { MatComponentsModule } from './mat-components.module';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 
+import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
+
 const appRoutingProviders: any = [];
 
 @NgModule({
@@ -37,6 +39,7 @@ const appRoutingProviders: any = [];
     FormsModule,
     HttpModule,
     MatComponentsModule,
+    BarecodeScannerLivestreamModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },

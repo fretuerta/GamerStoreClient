@@ -30,5 +30,6 @@ export const LANG_EN_TRANS = {
     'cover': 'Cover',
     'quantity': 'Quantity',
     'rent_price': 'Rent Price',
-    'sale_price': 'Sale Price'
-}
+    'sale_price': 'Sale Price',
+    'code': 'Code'
+};

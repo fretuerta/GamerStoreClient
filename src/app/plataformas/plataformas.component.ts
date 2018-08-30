@@ -35,7 +35,11 @@ export class PlataformasComponent implements OnInit {
 
   readPlataformas() {
     this.plataformasService.readPlataformas().then(plataformas => {
-      this.plataformas = plataformas.json();
+      this.plataformas = plataformas.json().sort((n1, n2) => {
+        if (n1.nombre > n2.nombre) { return 1; }
+        if (n1.nombre < n2.nombre) { return -1; }
+        return 0;
+      });
       this.updatePlataformasToShow();
     });
   }

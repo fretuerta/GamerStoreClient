@@ -1,25 +1,40 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { JuegosService } from '../services/juegos.service';
+import { BarecodeScannerLivestreamComponent } from 'ngx-barcode-scanner';
 
 @Component({
   selector: 'app-juegos',
   templateUrl: './juegos.component.html',
-  styleUrls: ['./juegos.component.css']
+  styleUrls: ['./juegos.component.css'],
+
+  encapsulation: ViewEncapsulation.None
 })
 export class JuegosComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput;
-  
+
+  @ViewChild(BarecodeScannerLivestreamComponent)
+  BarecodeScanner: BarecodeScannerLivestreamComponent;
+
   juegos: any[];
   juegosToShow: any[];
-  displayedColumns: string[] = ['id', 'nombre', 'caratula', 'action'];
-  editing: boolean = false;
+  displayedColumns: string[] = ['nombre', 'codigo', 'caratula', 'action'];
+  editing = false;
   element: any = {};
-  searchText: string = '';
+  searchText = '';
 
   constructor( protected juegosService: JuegosService) { }
 
-  ngOnInit() { this.readJuegos() }
+  ngOnInit() { this.readJuegos(); }
+
+  scanBarCode(up: boolean) {
+    up ? this.BarecodeScanner.start() : this.BarecodeScanner.stop();
+  }
+
+  onValueChanges(value) {
+    this.element.codigo = value.code;
+    this.BarecodeScanner.stop();
+  }
 
   updateJuegosToShow() {
     this.juegosToShow = [];
@@ -39,7 +54,7 @@ export class JuegosComponent implements OnInit {
     this.juegosService.readJuegos().then(juegos => {
       this.juegos = juegos.json();
       this.updateJuegosToShow();
-    })
+    });
   }
 
   edit(element: any) {
@@ -48,14 +63,13 @@ export class JuegosComponent implements OnInit {
   }
 
   remove(id: number) {
-    this.juegosService.deleteJuego(id).then( juegos => {
-      this.juegos = juegos.json();
-      this.updateJuegosToShow();
-    })
+    this.juegosService.deleteJuego(id).then( () => {
+      this.readJuegos();
+    });
   }
 
   add() {
-    this.element = { nombre: ''};
+    this.element = { nombre: '', codigo: '' };
     this.editing = true;
   }
 
@@ -64,9 +78,9 @@ export class JuegosComponent implements OnInit {
   }
 
   onFileChange(event) {
-    let reader: FileReader = new FileReader();
-    if(event.target.files && event.target.files.length > 0) {
-      let file = event.target.files[0];
+    const reader: FileReader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.element.caratula = reader.result;
@@ -79,18 +93,16 @@ export class JuegosComponent implements OnInit {
   }
 
   saveElement() {
-    if (this.element.id) {
-      this.juegosService.updateJuego(this.element).then(juegos => {
-        this.juegos = juegos.json();
-        this.updateJuegosToShow();
+    if (this.element._id) {
+      this.juegosService.updateJuego(this.element).then( () => {
         this.editing = false;
-      })
+        this.readJuegos();
+      });
     } else {
-      this.juegosService.addJuego(this.element).then(juegos => {
-        this.juegos = juegos.json();
-        this.updateJuegosToShow();
+      this.juegosService.addJuego(this.element).then( () => {
         this.editing = false;
-      })
+        this.readJuegos();
+      });
     }
   }
 

@@ -30,5 +30,6 @@ export const LANG_ES_TRANS = {
     'cover': 'Carátula',
     'quantity': 'Cantidad',
     'rent_price': 'Precio Alquiler',
-    'sale_price': 'Precio Venta'
-}
+    'sale_price': 'Precio Venta',
+    'code': 'Código'
+};

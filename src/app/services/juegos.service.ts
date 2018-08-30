@@ -14,13 +14,13 @@ export class JuegosService {
   public readJuegos(): Promise<any> {
     return this.http.get(this.baseUrl + 'juegos').toPromise();
   }
-  
+
   public deleteJuego(id: number): Promise<any> {
     return this.http.delete(this.baseUrl + 'juego/' + id).toPromise();
   }
 
   public updateJuego(element: any): Promise<any> {
-    return this.http.put(this.baseUrl + 'juego/' + element.id, element ).toPromise();
+    return this.http.put(this.baseUrl + 'juego/' + element._id, element ).toPromise();
   }
 
   public addJuego(element: any): Promise<any> {
