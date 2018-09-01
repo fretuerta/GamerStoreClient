@@ -33,9 +33,9 @@
     </div>
     <div *ngIf="editing" class="c2">
       <div class="form_block">
-        <label>{{'name'|translate}}:
-          <input type="text" [(ngModel)]="element.nombre">
-        </label>
+        <mat-form-field>
+          <input matInput placeholder="{{'name'|translate}}" [(ngModel)]="element.nombre">
+        </mat-form-field>
       </div>
       <div class="buttons_block">
         <button mat-stroked-button (click)="saveElement()"><i class="material-icons">save</i> {{'save'|translate}} </button>

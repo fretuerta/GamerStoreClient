@@ -6,3 +6,9 @@
 .c3x2 { width: 66% }
 .c4 { width: 25%; }
 .c4x3 { width: 75% }
+
+@media print {
+  .noPrint {
+    display: none;
+  }
+}

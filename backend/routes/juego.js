@@ -22,8 +22,7 @@ router.post('/GamerStore/api/juego', (req, res, next) => {
 });
 
 router.get('/GamerStore/api/juegos',(req, res, next) => {
-  Juego.find()
-    .then(juegos => {
+  Juego.find().then( juegos => {
       res.status(200).json(juegos);
     });
 

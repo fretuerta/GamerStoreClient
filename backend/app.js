@@ -4,19 +4,15 @@ const mongoose = require('mongoose')
 
 const plataformaRoutes = require('./routes/plataforma');
 const juegoRoutes = require('./routes/juego');
+const articuloRoutes = require('./routes/articulo');
 
 const app = express();
 mongoose.connect('mongodb://localhost:27017/GamerStore')
-  .then(() => {
-    console.log('Connected to database!');
-  })
-  .catch(() => {
-    console.log('Connection failed!');
-  })
+  .then(() => { console.log('Connected to database!'); })
+  .catch(() => { console.log('Connection failed!'); })
 
 app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
-
 
 app.use((req, res, next)=> {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -31,5 +27,6 @@ app.use((req, res, next)=> {
 
 app.use(plataformaRoutes);
 app.use(juegoRoutes);
+app.use(articuloRoutes);
 
 module.exports = app;

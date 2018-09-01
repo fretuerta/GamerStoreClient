@@ -15,10 +15,11 @@ export class ArticulosComponent implements OnInit {
   plataformas: Plataforma[];
   articulos: Articulo[];
   articulosToShow: Articulo[];
-  displayedColumns: string[] = ['id', 'juego', 'plataforma', 'formato', 'cantidad', 'precioAlquiler', 'precioVenta', 'action'];
-  editing: boolean = false;
+  displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantidad', 'precioAlquiler', 'precioVenta', 'action'];
+  editing = false;
   element: any = {};
-  searchText: string = '';
+  searchText = '';
+  formatos: any[];
 
   constructor(protected articulosService: ArticulosService,
               protected plataformasService: PlataformasService,
@@ -30,21 +31,21 @@ export class ArticulosComponent implements OnInit {
       this.juegosService.readJuegos().then( (juegos) => {
         this.juegos = juegos.json();
         this.readArticulos();
-      } )
-    })
+      } );
+    });
+
+    this.formatos = [
+      { nombre: 'CD'},
+      { nombre: 'DVD'},
+      { nombre: 'BluRay'}
+    ];
   }
 
   readArticulos() {
     this.articulosService.readArticulos().then(articulos => {
       this.articulos = articulos.json();
-
-      this.articulos.forEach(articulo => {
-        articulo.juego = this.juegos.find( (element) => { return element.id == articulo.juegoId }).nombre;
-        articulo.plataforma = this.plataformas.find( (element) => { return element.id == articulo.plataformaId }).nombre;
-      })
-
       this.updateArticulosToShow();
-    })
+    });
   }
 
   updateArticulosToShow() {
@@ -67,10 +68,9 @@ export class ArticulosComponent implements OnInit {
   }
 
   remove(id: number) {
-    this.articulosService.deleteArticulo(id).then( articulos => {
-      this.articulos = articulos.json();
-      this.updateArticulosToShow();
-    })
+    this.articulosService.deleteArticulo(id).then( () => {
+      this.readArticulos();
+    });
   }
 
   add() {
@@ -84,17 +84,15 @@ export class ArticulosComponent implements OnInit {
 
   saveElement() {
     if (this.element.id) {
-      this.articulosService.updateArticulo(this.element).then(articulos => {
-        this.articulos = articulos.json();
-        this.updateArticulosToShow();
+      this.articulosService.updateArticulo(this.element).then( () => {
+        this.readArticulos();
         this.editing = false;
-      })
+      });
     } else {
-      this.articulosService.addArticulo(this.element).then(articulos => {
-        this.articulos = articulos.json();
-        this.updateArticulosToShow();
+      this.articulosService.addArticulo(this.element).then( () => {
+        this.readArticulos();
         this.editing = false;
-      })
+      });
     }
   }
 }

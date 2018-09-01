@@ -1,5 +1,5 @@
 import { HttpModule } from '@angular/http';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule, Component } from '@angular/core';
 
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
@@ -21,6 +21,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 
 import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
+import { ClientesComponent } from './clientes/clientes.component';
 
 const appRoutingProviders: any = [];
 
@@ -32,7 +33,8 @@ const appRoutingProviders: any = [];
     JuegosComponent,
     HomeComponent,
     ArticulosComponent,
-    LoginComponent
+    LoginComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,7 +47,8 @@ const appRoutingProviders: any = [];
       { path: 'login', component: LoginComponent },
       { path: 'plataformas', component: PlataformasComponent },
       { path: 'juegos', component: JuegosComponent },
-      { path: 'articulos', component: ArticulosComponent }
+      { path: 'articulos', component: ArticulosComponent },
+      { path: 'clientes', component: ClientesComponent }
     ])
   ],
   providers: [
