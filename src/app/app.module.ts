@@ -22,6 +22,8 @@ import { LoginComponent } from './auth/login/login.component';
 
 import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
 import { ClientesComponent } from './clientes/clientes.component';
+import { ScanbarcodeComponent } from './modals/scanbarcode/scanbarcode.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
 
 const appRoutingProviders: any = [];
 
@@ -34,13 +36,15 @@ const appRoutingProviders: any = [];
     HomeComponent,
     ArticulosComponent,
     LoginComponent,
-    ClientesComponent
+    ClientesComponent,
+    ScanbarcodeComponent
   ],
   imports: [
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     MatComponentsModule,
+    MatDialogModule,
     BarecodeScannerLivestreamModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
@@ -51,12 +55,14 @@ const appRoutingProviders: any = [];
       { path: 'clientes', component: ClientesComponent }
     ])
   ],
+  entryComponents: [ ScanbarcodeComponent ],
   providers: [
     appRoutingProviders,
     { provide: LOCALE_ID, useValue: 'es'},
     TranslateService,
     TRANSLATION_PROVIDERS,
-    TranslatePipe
+    TranslatePipe,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
   bootstrap: [AppComponent]
 })

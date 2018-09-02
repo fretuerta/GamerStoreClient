@@ -26,7 +26,6 @@
             <button mat-button (click)="remove(element._id)"> {{'erase'|translate}} </button>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>

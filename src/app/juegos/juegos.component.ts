@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { JuegosService } from '../services/juegos.service';
-import { BarecodeScannerLivestreamComponent } from 'ngx-barcode-scanner';
+import { MatDialog } from '@angular/material';
+import { ScanbarcodeComponent } from '../modals/scanbarcode/scanbarcode.component';
 
 @Component({
   selector: 'app-juegos',
@@ -13,30 +14,28 @@ export class JuegosComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput;
 
-  @ViewChild(BarecodeScannerLivestreamComponent)
-  BarecodeScanner: BarecodeScannerLivestreamComponent;
-
   juegos: any[];
   juegosToShow: any[];
   displayedColumns: string[] = ['nombre', 'codigo', 'caratula', 'action'];
   editing = false;
   element: any = {};
   searchText = '';
-  isScanningBarCode = false;
 
-  constructor( protected juegosService: JuegosService) { }
+  constructor( protected juegosService: JuegosService,
+               public dialog: MatDialog) { }
 
   ngOnInit() { this.readJuegos(); }
 
-  scanBarCode(up: boolean) {
-    up ? this.BarecodeScanner.start() : this.BarecodeScanner.stop();
-    this.isScanningBarCode = up;
-  }
+  scanBarCode(): void {
+    const dialogRef = this.dialog.open(ScanbarcodeComponent, {
+      width: '250px',
+      data: { codigo: this.element.codigo }
+    });
 
-  onValueChanges(value) {
-    this.element.codigo = value.code;
-    this.BarecodeScanner.stop();
-    this.isScanningBarCode = false;
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.element.codigo = result;
+    });
   }
 
   updateJuegosToShow() {

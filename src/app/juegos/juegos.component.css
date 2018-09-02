@@ -31,9 +31,3 @@ table {
 .coverButton img {
     max-height: 75px;
 }
-
-.barcodeScanner {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
