@@ -51,6 +51,8 @@ export class ArticulosComponent implements OnInit {
   updateArticulosToShow() {
     this.articulosToShow = [];
     this.articulos.forEach(articulo => {
+      const juegoTemp = this.juegos.find(element => element._id === articulo.juego_id );
+      articulo.juego = juegoTemp.nombre;
       if (articulo.juego.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
         this.articulosToShow.push(articulo);
       }
