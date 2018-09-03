@@ -1,5 +1,6 @@
 export interface Plataforma {
-  id: number;
+  id?: number;
+  _id?: string;
   nombre: string;
 }
 
@@ -17,7 +18,7 @@ export interface Articulo {
   precioAlquiler: number;
   juego_id: string;
   juego?: string;
-  plataforma_id: number;
+  plataforma_id: string;
   plataforma?: string;
   formato: string;
 }

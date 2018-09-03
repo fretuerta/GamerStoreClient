@@ -20,7 +20,7 @@ export class ArticulosService {
   }
 
   public updateArticulo(element: any): Promise<any> {
-    return this.http.put(this.baseUrl + 'articulo/' + element.id, element ).toPromise();
+    return this.http.put(this.baseUrl + 'articulo/' + element._id, element ).toPromise();
   }
 
   public addArticulo(element: any): Promise<any> {

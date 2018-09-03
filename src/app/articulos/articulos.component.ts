@@ -52,7 +52,9 @@ export class ArticulosComponent implements OnInit {
     this.articulosToShow = [];
     this.articulos.forEach(articulo => {
       const juegoTemp = this.juegos.find(element => element._id === articulo.juego_id );
-      articulo.juego = juegoTemp.nombre;
+      articulo.juego = juegoTemp ? juegoTemp.nombre : '';
+      const plataformaTemp = this.plataformas.find(element => element._id === articulo.plataforma_id);
+      articulo.plataforma = plataformaTemp ? plataformaTemp.nombre : '';
       if (articulo.juego.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
         this.articulosToShow.push(articulo);
       }
@@ -85,7 +87,7 @@ export class ArticulosComponent implements OnInit {
   }
 
   saveElement() {
-    if (this.element.id) {
+    if (this.element._id) {
       this.articulosService.updateArticulo(this.element).then( () => {
         this.readArticulos();
         this.editing = false;

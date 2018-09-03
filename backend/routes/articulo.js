@@ -14,7 +14,7 @@ router.put('/GamerStore/api/articulo/:id', (req, res, next) => {
 router.post('/GamerStore/api/articulo', (req, res, next) => {
   const articulo = new Articulo({
     juego_id: req.body.juego_id,
-    plataforma_id: req.body.juego_id,
+    plataforma_id: req.body.plataforma_id,
     formato: req.body.formato,
     cantidad: req.body.cantidad,
     precioAquiler: req.body.precioAquiler,

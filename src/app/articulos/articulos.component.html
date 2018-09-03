@@ -54,7 +54,7 @@
           <button mat-button (click)="add()" class="addButton"> {{'add'|translate}} </button>
         </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="remove(element.id)"> {{'erase'|translate}} </button>
+          <button mat-button (click)="remove(element._id)"> {{'erase'|translate}} </button>
         </td>
       </ng-container>
 
