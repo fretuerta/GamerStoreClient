@@ -29,6 +29,8 @@ export class JuegosComponent implements OnInit {
   scanBarCode(): void {
     const dialogRef = this.dialog.open(ScanbarcodeComponent, {
       width: '500px',
+      minHeight: '300px',
+      hasBackdrop: true,
       data: { codigo: this.element.codigo }
     });
 
