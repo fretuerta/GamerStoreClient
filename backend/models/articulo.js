@@ -5,7 +5,7 @@ const articuloSchema = mongoose.Schema({
   plataforma_id: { type: String, required: true },
   formato: { type: String },
   cantidad: { type: Number },
-  precioAquiler: { type: Number },
+  precioAlquiler: { type: Number },
   precioVenta: { type: Number }
 });
 

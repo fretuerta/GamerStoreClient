@@ -34,9 +34,8 @@ export class JuegosComponent implements OnInit {
       data: { codigo: this.element.codigo }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.element.codigo = result;
+    dialogRef.afterClosed().toPromise().then(result => {
+      if (result) { this.element.codigo = result; }
     });
   }
 

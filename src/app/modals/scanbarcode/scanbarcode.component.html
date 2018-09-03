@@ -1,7 +1,7 @@
-<div class="barcodeScanner">
-  <h2>Scanner de código de barras</h2>
+<h1 mat-dialog-title>Scanner de código de barras</h1>
+<mat-dialog-content>
   <barcode-scanner-livestream type="code_128" (valueChanges)="onValueChanges($event)"></barcode-scanner-livestream>
-  <div><button mat-stroked-button color="danger" (click)="close()"><i class="material-icons">close</i>
-      {{'cancel'|translate}}
-    </button></div>
-</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-stroked-button (click)="close()"><i class="material-icons">close</i> Close</button>
+</mat-dialog-actions>

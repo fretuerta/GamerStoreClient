@@ -59,6 +59,7 @@ export class ArticulosComponent implements OnInit {
         this.articulosToShow.push(articulo);
       }
     });
+    console.log('articulos: ', this.articulos);
   }
 
   clearSearchText() {

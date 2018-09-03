@@ -17,7 +17,7 @@ router.post('/GamerStore/api/articulo', (req, res, next) => {
     plataforma_id: req.body.plataforma_id,
     formato: req.body.formato,
     cantidad: req.body.cantidad,
-    precioAquiler: req.body.precioAquiler,
+    precioAlquiler: req.body.precioAlquiler,
     precioVenta: req.body.precioVenta
   });
   articulo.save().then(result => {

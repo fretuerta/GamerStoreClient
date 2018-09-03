@@ -30,9 +30,9 @@ export class ScanbarcodeComponent implements OnInit, OnDestroy {
   }
 
   onValueChanges(value) {
-    this.data.codigo = value.code;
+    console.log('value: ', value);
     this.BarecodeScanner.stop();
-    this.dialogRef.close();
+    this.dialogRef.close(value.code);
   }
 
   close() {
