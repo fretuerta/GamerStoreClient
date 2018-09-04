@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const plataformaRoutes = require('./routes/plataforma');
 const juegoRoutes = require('./routes/juego');
 const articuloRoutes = require('./routes/articulo');
+const clienteRoutes = require('./routes/cliente');
 
 const app = express();
 mongoose.connect('mongodb://localhost:27017/GamerStore')
@@ -28,5 +29,6 @@ app.use((req, res, next)=> {
 app.use(plataformaRoutes);
 app.use(juegoRoutes);
 app.use(articuloRoutes);
+app.use(clienteRoutes);
 
 module.exports = app;

@@ -1,3 +1,16 @@
+export interface Cliente {
+  id?: number;
+  _id?: string;
+  nombre: string;
+  apellidos: string;
+  dni: string;
+  telefono: string;
+  direccion: string;
+  codPostal: number;
+  poblacion: string;
+  provincia: string;
+}
+
 export interface Plataforma {
   id?: number;
   _id?: string;
@@ -13,6 +26,7 @@ export interface Juego {
 
 export interface Articulo {
   id: number;
+  _id?: string;
   cantidad: number;
   precioVenta: number;
   precioAlquiler: number;
