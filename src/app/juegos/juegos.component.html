@@ -51,7 +51,7 @@
       <mat-form-field>
           <input matInput placeholder="{{'code'|translate}}" [(ngModel)]="element.codigo">
       </mat-form-field>
-      <button mat-stroked-button color="primary" (click)="scanBarCode()"><i class="material-icons">view_array</i> Scanear</button>
+      <button mat-stroked-button color="primary" class="scanButton" (click)="scanBarCode()"><i class="material-icons">view_array</i> Scanear</button>
       <p>{{'cover'|translate}}:
         <input type="file" accept="image/jpeg" (change)="onFileChange($event)" #fileInput>
         <i class="material-icons clearButton" (click)="resetImage()">delete</i>

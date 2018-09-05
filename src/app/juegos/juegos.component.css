@@ -31,3 +31,7 @@ table {
 .coverButton img {
     max-height: 75px;
 }
+
+.scanButton {
+  display: block;
+}
