@@ -1,4 +1,8 @@
 export const LANG_EN_TRANS = {
+    'address': 'Address',
+    'codPostal': 'Cod',
+    'city': 'City',
+    'state': 'State',
     'language': 'Language',
     'es': 'Spanish',
     'en': 'English',
@@ -29,6 +33,9 @@ export const LANG_EN_TRANS = {
     'erase': 'Erase',
     'add': 'Add',
     'search': 'Search',
+    'surname': 'Surname',
+    'dni': 'DNI',
+    'telephone': 'Telephone',
     'found': 'Found',
     'of': 'of',
     'cover': 'Cover',

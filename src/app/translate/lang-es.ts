@@ -1,4 +1,8 @@
 export const LANG_ES_TRANS = {
+    'address': 'Dirección',
+    'codPostal': 'Cod Postal',
+    'city': 'Población',
+    'state': 'Provincia',
     'language': 'Idioma',
     'es': 'Español',
     'en': 'Inglés',
@@ -29,6 +33,9 @@ export const LANG_ES_TRANS = {
     'erase': 'Borrar',
     'add': 'Añadir',
     'search': 'Buscar',
+    'surname': 'Apellidos',
+    'dni': 'DNI',
+    'telephone': 'Teléfono',
     'found': 'Encontrado',
     'of': 'de',
     'cover': 'Carátula',

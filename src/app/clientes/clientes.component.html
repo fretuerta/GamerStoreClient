@@ -1,3 +1,107 @@
-<p>
-  clientes works!
-</p>
+<h1><i class="material-icons">people</i> {{'clients'|translate}}</h1>
+<div class="form_block">
+  <label>{{'search'|translate}}:
+    <input type="text" [(ngModel)]="searchText" (keyup)="updateClientesToShow()">
+  </label>
+  <i class="material-icons clearButton" (click)="clearSearchText()">remove_circle</i>
+  <span *ngIf="clientes && clientesToShow">
+    {{'found'|translate}} {{clientesToShow.length}} {{'of'|translate}} {{clientes.length}}
+  </span>
+</div>
+<div class="flex_box">
+  <div class="c1 table_box mat-elevation-z8">
+    <table mat-table [dataSource]="clientesToShow" class="mat-elevation-z8">
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> {{'name'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="edit(element)"> {{element.nombre}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="apellidos">
+        <th mat-header-cell *matHeaderCellDef> {{'surname'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="edit(element)"> {{element.apellidos}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef> {{'dni'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="edit(element)"> {{element.dni}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef> {{'telephone'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="edit(element)"> {{element.telefono}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef> {{'address'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="edit(element)"> {{element.direccion}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="codPostal">
+        <th mat-header-cell *matHeaderCellDef> {{'codPostal'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="edit(element)"> {{element.codPostal}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="poblacion">
+        <th mat-header-cell *matHeaderCellDef> {{'city'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="edit(element)"> {{element.poblacion}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="provincia">
+        <th mat-header-cell *matHeaderCellDef> {{'state'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="edit(element)"> {{element.provincia}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>
+          <button mat-button (click)="add()" class="addButton"> {{'add'|translate}} </button>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="remove(element._id)"> {{'erase'|translate}} </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div *ngIf="editing" class="c3">
+    <div class="form_block">
+      <mat-form-field>
+        <input matInput placeholder="{{'name'|translate}}" [(ngModel)]="element.nombre">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{'surname'|translate}}" [(ngModel)]="element.apellidos">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{'dni'|translate}}" [(ngModel)]="element.dni">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{'telephone'|translate}}" [(ngModel)]="element.telefono">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{'address'|translate}}" [(ngModel)]="element.direccion">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{'codPostal'|translate}}" [(ngModel)]="element.codPostal">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{'city'|translate}}" [(ngModel)]="element.poblacion">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{'state'|translate}}" [(ngModel)]="element.provincia">
+      </mat-form-field>
+    </div>
+    <div class="buttons_block">
+      <button mat-stroked-button (click)="saveElement()"><i class="material-icons">save</i> {{'save'|translate}} </button>
+      <button mat-stroked-button color="primary" (click)="closeEditing()"><i class="material-icons">close</i> {{'cancel'|translate}}
+        </button>
+    </div>
+  </div>
+</div>
