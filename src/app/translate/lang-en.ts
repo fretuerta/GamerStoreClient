@@ -1,9 +1,12 @@
 export const LANG_EN_TRANS = {
     'address': 'Address',
     'codPostal': 'Cod',
+    'chooseImage': 'Choose Image',
     'city': 'City',
     'state': 'State',
     'language': 'Language',
+    'removeImage': 'Remove Image',
+    'editing': 'Editing',
     'es': 'Spanish',
     'en': 'English',
     'home': 'Home',

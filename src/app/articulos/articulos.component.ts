@@ -51,9 +51,11 @@ export class ArticulosComponent implements OnInit {
   updateArticulosToShow() {
     this.articulosToShow = [];
     this.articulos.forEach(articulo => {
-      const juegoTemp = this.juegos.find(element => element.id.toString() === articulo.juego_id );
+      console.log('articulo: ', articulo);
+      const juegoTemp = this.juegos.find(element => element.id === articulo.juegoId );
+      console.log('juegoTemp: ', juegoTemp);
       articulo.juego = juegoTemp ? juegoTemp.nombre : '';
-      const plataformaTemp = this.plataformas.find(element => element.id.toString() === articulo.plataforma_id);
+      const plataformaTemp = this.plataformas.find(element => element.id === articulo.plataformaId);
       articulo.plataforma = plataformaTemp ? plataformaTemp.nombre : '';
       if (articulo.juego.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
         this.articulosToShow.push(articulo);

@@ -4,6 +4,7 @@
 
 .flex_box {
     display: flex;
+    flex-wrap: wrap;
 }
 
 table {
@@ -32,6 +33,18 @@ table {
     max-height: 75px;
 }
 
-.scanButton {
+.oneBlock {
   display: block;
+}
+
+.fieldInLine {
+  display: inline-block;
+}
+
+mat-form-field, .fieldInLine {
+  margin: 0.5rem;
+}
+
+.editingImage img {
+  margin: 0.5rem;
 }

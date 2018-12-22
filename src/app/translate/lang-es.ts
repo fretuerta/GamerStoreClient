@@ -1,9 +1,12 @@
 export const LANG_ES_TRANS = {
     'address': 'Dirección',
     'codPostal': 'Cod Postal',
+    'chooseImage': 'Elegir Imagen',
     'city': 'Población',
     'state': 'Provincia',
     'language': 'Idioma',
+    'removeImage': 'Borrar Imagen',
+    'editing': 'Editando',
     'es': 'Español',
     'en': 'Inglés',
     'home': 'Inicio',

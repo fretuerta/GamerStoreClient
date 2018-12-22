@@ -26,9 +26,9 @@ export interface Articulo {
   cantidad: number;
   precioVenta: number;
   precioAlquiler: number;
-  juego_id: string;
+  juegoId: number;
   juego?: string;
-  plataforma_id: string;
+  plataformaId: number;
   plataforma?: string;
   formato: string;
 }

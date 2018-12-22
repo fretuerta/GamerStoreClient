@@ -1,69 +1,85 @@
 <h1><i class="material-icons">videogame_asset</i> {{'games'|translate}}</h1>
-<div class="form_block">
-  <label>{{'search'|translate}}:
-    <input type="text" [(ngModel)]="searchText" (keyup)="updateJuegosToShow()">
-  </label>
-  <i class="material-icons clearButton" (click)="clearSearchText()">remove_circle</i>
-  <span *ngIf="juegos && juegosToShow">
-    {{'found'|translate}} {{juegosToShow.length}} {{'of'|translate}} {{juegos.length}}
-  </span>
-</div>
-<div class="flex_box">
-  <div class="c1 table_box mat-elevation-z8">
-    <table mat-table [dataSource]="juegosToShow" class="mat-elevation-z8">
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef> {{'name'|translate}} </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="edit(element)"> {{element.nombre}} </button>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="codigo">
-        <th mat-header-cell *matHeaderCellDef> {{'code'|translate}} </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="edit(element)"> {{element.codigo}} </button>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="caratula">
-        <th mat-header-cell *matHeaderCellDef> {{'cover'|translate}} </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="edit(element)"><div *ngIf="element.caratula" class="coverButton"><img src="{{element.caratula}}"></div>
-            </button>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>
-          <button mat-button (click)="add()" class="addButton"> {{'add'|translate}} </button>
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="remove(element.id)"> {{'erase'|translate}} </button>
-        </td>
-      </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+<div *ngIf="!editing" class="c1">
+  <div class="form_block">
+    <label>{{'search'|translate}}:
+      <input type="text" [(ngModel)]="searchText" (keyup)="updateJuegosToShow()">
+    </label>
+    <i class="material-icons clearButton" (click)="clearSearchText()">remove_circle</i>
+    <span *ngIf="juegos && juegosToShow">
+      {{'found'|translate}} {{juegosToShow.length}} {{'of'|translate}} {{juegos.length}}
+    </span>
   </div>
-  <div *ngIf="editing" class="c3">
-    <div class="form_block">
+  <div class="flex_box">
+    <div class="c1 table_box mat-elevation-z8">
+      <table mat-table [dataSource]="juegosToShow" class="mat-elevation-z8">
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> {{'name'|translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="edit(element)"> {{element.nombre}} </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef> {{'code'|translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="edit(element)"> {{element.codigo}} </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="caratula">
+          <th mat-header-cell *matHeaderCellDef> {{'cover'|translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="edit(element)"><div *ngIf="element.caratula" class="coverButton"><img src="{{element.caratula}}"></div>
+              </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>
+            <button mat-button (click)="add()" class="addButton"> {{'add'|translate}} </button>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="remove(element.id)"> {{'erase'|translate}} </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf="editing" class="c1">
+  <h2>{{'editing'|translate}}</h2>
+  <div class="form_block flex_box">
+    <div class="oneBlock">
       <mat-form-field>
         <input matInput placeholder="{{'name'|translate}}" [(ngModel)]="element.nombre">
       </mat-form-field>
+    </div>
+    <div class="oneBlock">
+      <div class="fieldInLine">
+        <button mat-stroked-button color="primary" class="oneBlock" (click)="scanBarCode()"><i class="material-icons">view_array</i> Scanear</button>
+      </div>
       <mat-form-field>
-          <input matInput placeholder="{{'code'|translate}}" [(ngModel)]="element.codigo">
+        <input matInput placeholder="{{'code'|translate}}" [(ngModel)]="element.codigo"/>
       </mat-form-field>
-      <button mat-stroked-button color="primary" class="scanButton" (click)="scanBarCode()"><i class="material-icons">view_array</i> Scanear</button>
-      <p>{{'cover'|translate}}:
-        <input type="file" accept="image/jpeg" (change)="onFileChange($event)" #fileInput>
-        <i class="material-icons clearButton" (click)="resetImage()">delete</i>
-      </p>
-      <div *ngIf="element.caratula">
+    </div>
+    <div class="oneBlock">
+      <div class="fieldInLine">{{'cover'|translate}}</div>
+      <div class="fieldInLine">
+        <button mat-stroked-button color="primary" (click)="fileInput.click()"><i class="material-icons clearButton">add_a_photo</i> {{'chooseImage'|translate}}</button>
+        <input type="file" accept="image/jpeg" id="fileInput" (change)="onFileChange($event)" #fileInput style="display: none;" >
+      </div>
+      <div class="fieldInLine">
+        <button mat-stroked-button color="primary" (click)="resetImage()"><i class="material-icons clearButton">delete</i> {{'removeImage'|translate}}</button>
+      </div>
+      <div *ngIf="element.caratula" class="editingImage">
         <img src="{{element.caratula}}">
       </div>
     </div>
-    <div class="buttons_block">
-      <button mat-stroked-button (click)="saveElement()"><i class="material-icons">save</i> {{'save'|translate}} </button>
-      <button mat-stroked-button color="primary" (click)="closeEditing()"><i class="material-icons">close</i> {{'cancel'|translate}}
-        </button>
-    </div>
+  </div>
+  <div class="buttons_block">
+    <button mat-stroked-button (click)="saveElement()"><i class="material-icons">save</i> {{'save'|translate}} </button>
+    <button mat-stroked-button color="primary" (click)="closeEditing()"><i class="material-icons">close</i> {{'cancel'|translate}}
+      </button>
   </div>
 </div>
