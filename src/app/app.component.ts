@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { TranslateService } from './translate/translate.service';
 
 @Component({
@@ -6,17 +6,17 @@ import { TranslateService } from './translate/translate.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   public supportedLanguages: any[];
   currentLanguage: string;
 
   langs = [{ value: 'es' },
-           { value: 'en' }]
+           { value: 'en' }];
 
   constructor(private translateService: TranslateService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.currentLanguage = 'es';
     this.updateLanguage();
   }

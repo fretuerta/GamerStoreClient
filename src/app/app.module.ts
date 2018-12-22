@@ -1,7 +1,7 @@
 import { HttpModule } from '@angular/http';
 import { LOCALE_ID, NgModule, Component } from '@angular/core';
 
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, APP_BASE_HREF } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 registerLocaleData(localeEs, 'es');
 import { TranslatePipe } from './translate/translate.pipe';
@@ -62,7 +62,7 @@ const appRoutingProviders: any = [];
     TranslateService,
     TRANSLATION_PROVIDERS,
     TranslatePipe,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false} }
   ],
   bootstrap: [AppComponent]
 })

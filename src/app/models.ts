@@ -1,6 +1,5 @@
 export interface Cliente {
   id?: number;
-  _id?: string;
   nombre: string;
   apellidos: string;
   dni: string;
@@ -13,20 +12,17 @@ export interface Cliente {
 
 export interface Plataforma {
   id?: number;
-  _id?: string;
   nombre: string;
 }
 
 export interface Juego {
   id?: number;
-  _id?: string;
   nombre?: string;
   caratula?: string;
 }
 
 export interface Articulo {
   id: number;
-  _id?: string;
   cantidad: number;
   precioVenta: number;
   precioAlquiler: number;
