@@ -27,3 +27,7 @@ table {
     vertical-align: bottom;
     cursor: pointer;
 }
+
+mat-form-field {
+  margin: 0.5rem;
+}
