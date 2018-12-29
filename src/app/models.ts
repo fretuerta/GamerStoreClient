@@ -29,4 +29,6 @@ export interface Articulo {
   juego: Juego;
   plataforma: Plataforma;
   formato: string;
+  fechaCompra: Date;
+  fechaVenta: Date;
 }

@@ -19,6 +19,8 @@ import { ArticulosComponent } from './articulos/articulos.component';
 import { MatComponentsModule } from './mat-components.module';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
+import { VentasComponent } from './ventas/ventas.component';
+import { AlquileresComponent } from './alquileres/alquileres.component';
 
 import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
 import { ClientesComponent } from './clientes/clientes.component';
@@ -37,7 +39,9 @@ const appRoutingProviders: any = [];
     ArticulosComponent,
     LoginComponent,
     ClientesComponent,
-    ScanbarcodeComponent
+    ScanbarcodeComponent,
+    VentasComponent,
+    AlquileresComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -52,7 +56,9 @@ const appRoutingProviders: any = [];
       { path: 'plataformas', component: PlataformasComponent },
       { path: 'juegos', component: JuegosComponent },
       { path: 'articulos', component: ArticulosComponent },
-      { path: 'clientes', component: ClientesComponent }
+      { path: 'clientes', component: ClientesComponent },
+      { path: 'ventas', component: VentasComponent },
+      { path: 'alquileres', component: AlquileresComponent }
     ])
   ],
   entryComponents: [ ScanbarcodeComponent ],

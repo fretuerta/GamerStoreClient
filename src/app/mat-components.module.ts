@@ -6,6 +6,8 @@ import {
   MatSelectModule,
   MatCardModule,
   MatProgressSpinnerModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MatInputModule
 } from '@angular/material';
 
@@ -16,6 +18,8 @@ import {
     MatButtonModule,
     MatSelectModule,
     MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatInputModule,
     MatProgressSpinnerModule
   ]

@@ -1,7 +1,5 @@
 <h1><i class="material-icons">book</i> {{'items'|translate}}</h1>
-
 <div *ngIf="!editing">
-
   <div class="form_block">
     <label>{{'search'|translate}}:
       <input type="text" [(ngModel)]="searchText" (keyup)="updateArticulosToShow()">
@@ -26,7 +24,6 @@
             <button mat-button (click)="edit(element)"> {{element.plataforma.nombre}} </button>
           </td>
         </ng-container>
-
         <ng-container matColumnDef="formato">
           <th mat-header-cell *matHeaderCellDef> {{'format'|translate}} </th>
           <td mat-cell *matCellDef="let element">
@@ -51,7 +48,18 @@
             <button mat-button (click)="edit(element)"> {{element.precioVenta}} </button>
           </td>
         </ng-container>
-
+        <ng-container matColumnDef="fechaCompra">
+          <th mat-header-cell *matHeaderCellDef> {{'buyDate'|translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="edit(element)"> {{element.fechaCompra | date}} </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="fechaVenta">
+          <th mat-header-cell *matHeaderCellDef> {{'sellDate'|translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="edit(element)"> {{element.fechaVenta | date}} </button>
+          </td>
+        </ng-container>
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>
             <button mat-button (click)="add()" class="addButton"> {{'add'|translate}} </button>
@@ -60,7 +68,6 @@
             <button mat-button (click)="remove(element.id)"> {{'erase'|translate}} </button>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
@@ -68,7 +75,6 @@
   </div>
 </div>
 <div *ngIf="editing">
-  <!-- ['juego', 'plataforma', 'formato', 'cantidad', 'precioAlquiler', 'precioVenta', 'action'] -->
   <div class="form_block">
     <mat-form-field>
       <mat-select placeholder="{{'game'|translate}}" [(ngModel)]="element.juego.id">
@@ -99,6 +105,16 @@
     </mat-form-field>
     <mat-form-field>
       <input type="number" matInput placeholder="{{'salePrice'|translate}}" [(ngModel)]="element.precioVenta">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="{{'buyDate'|translate}}" [(ngModel)]="element.fechaCompra">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="{{'sellDate'|translate}}" [(ngModel)]="element.fechaVenta">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
   </div>
   <div class="buttons_block">

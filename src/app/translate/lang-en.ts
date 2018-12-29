@@ -1,8 +1,10 @@
 export const LANG_EN_TRANS = {
     'address': 'Address',
+    'buyDate': 'Buy Date',
     'codPostal': 'Cod',
     'chooseImage': 'Choose Image',
     'city': 'City',
+    'sellDate': 'Sell Date',
     'state': 'State',
     'language': 'Language',
     'removeImage': 'Remove Image',

@@ -1,8 +1,10 @@
 export const LANG_ES_TRANS = {
     'address': 'Dirección',
+    'buyDate': 'Fecha Compra',
     'codPostal': 'Cod Postal',
     'chooseImage': 'Elegir Imagen',
     'city': 'Población',
+    'sellDate': 'Fecha de Venta',
     'state': 'Provincia',
     'language': 'Idioma',
     'removeImage': 'Borrar Imagen',

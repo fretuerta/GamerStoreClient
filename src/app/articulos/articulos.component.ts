@@ -15,7 +15,8 @@ export class ArticulosComponent implements OnInit {
   plataformas: Plataforma[];
   articulos: Articulo[];
   articulosToShow: Articulo[];
-  displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantidad', 'precioAlquiler', 'precioVenta', 'action'];
+  displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantidad',
+      'precioAlquiler', 'precioVenta', 'fechaCompra', 'fechaVenta', 'action'];
   editing = false;
   element: any = {};
   searchText = '';
@@ -52,6 +53,8 @@ export class ArticulosComponent implements OnInit {
     this.articulosToShow = [];
     this.articulos.forEach(articulo => {
       if (articulo.juego.nombre.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
+        articulo.fechaCompra = articulo.fechaCompra ? new Date(articulo.fechaCompra) : null;
+        articulo.fechaVenta = articulo.fechaVenta ?  new Date(articulo.fechaVenta) : null;
         this.articulosToShow.push(articulo);
       }
     });
