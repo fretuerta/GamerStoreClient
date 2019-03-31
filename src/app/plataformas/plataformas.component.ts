@@ -50,9 +50,13 @@ export class PlataformasComponent implements OnInit {
   }
 
   remove(id: number) {
-    this.plataformasService.deletePlataforma(id).then( () => {
-      // this.plataformas = plataformas.json();
-      this.readPlataformas();
+    this.plataformasService.deletePlataforma(id).then( (plataformas) => {
+      this.plataformas = plataformas.json().sort((n1, n2) => {
+        if (n1.nombre > n2.nombre) { return 1; }
+        if (n1.nombre < n2.nombre) { return -1; }
+        return 0;
+      });
+      this.updatePlataformasToShow();
     });
   }
 
@@ -66,14 +70,24 @@ export class PlataformasComponent implements OnInit {
   }
 
   saveElement() {
-    if (this.element._id) {
+    if (this.element.id) {
       this.plataformasService.updatePlataforma(this.element).then(plataformas => {
-        this.readPlataformas();
+        this.plataformas = plataformas.json().sort((n1, n2) => {
+          if (n1.nombre > n2.nombre) { return 1; }
+          if (n1.nombre < n2.nombre) { return -1; }
+          return 0;
+        });
+        this.updatePlataformasToShow();
         this.editing = false;
       });
     } else {
       this.plataformasService.addPlataforma(this.element).then(plataformas => {
-        this.readPlataformas();
+        this.plataformas = plataformas.json().sort((n1, n2) => {
+          if (n1.nombre > n2.nombre) { return 1; }
+          if (n1.nombre < n2.nombre) { return -1; }
+          return 0;
+        });
+        this.updatePlataformasToShow();
         this.editing = false;
       });
     }

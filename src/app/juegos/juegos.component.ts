@@ -54,7 +54,7 @@ export class JuegosComponent implements OnInit {
   }
 
   readJuegos() {
-    this.juegosService.readJuegos().then(juegos => {
+    this.juegosService.readJuegos().then( (juegos) => {
       this.juegos = juegos.json();
       this.updateJuegosToShow();
     });
@@ -66,8 +66,9 @@ export class JuegosComponent implements OnInit {
   }
 
   remove(id: number) {
-    this.juegosService.deleteJuego(id).then( () => {
-      this.readJuegos();
+    this.juegosService.deleteJuego(id).then( (juegos) => {
+      this.juegos = juegos.json();
+      this.updateJuegosToShow();
     });
   }
 
@@ -96,15 +97,17 @@ export class JuegosComponent implements OnInit {
   }
 
   saveElement() {
-    if (this.element._id) {
-      this.juegosService.updateJuego(this.element).then( () => {
+    if (this.element.id) {
+      this.juegosService.updateJuego(this.element).then( (juegos) => {
         this.editing = false;
-        this.readJuegos();
+        this.juegos = juegos.json();
+        this.updateJuegosToShow();
       });
     } else {
-      this.juegosService.addJuego(this.element).then( () => {
+      this.juegosService.addJuego(this.element).then( (juegos) => {
         this.editing = false;
-        this.readJuegos();
+        this.juegos = juegos.json();
+        this.updateJuegosToShow();
       });
     }
   }

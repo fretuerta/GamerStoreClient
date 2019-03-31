@@ -11,14 +11,14 @@ import { Juego, Plataforma, Articulo } from 'src/app/models';
 })
 export class ArticulosComponent implements OnInit {
 
-  juegos: Juego[];
+  juegos: Juego[] = [];
   plataformas: Plataforma[];
   articulos: Articulo[];
   articulosToShow: Articulo[];
   displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantidad',
       'precioAlquiler', 'precioVenta', 'fechaCompra', 'fechaVenta', 'action'];
   editing = false;
-  element: any = {};
+  element: Articulo;
   searchText = '';
   formatos: any[];
 
@@ -77,7 +77,17 @@ export class ArticulosComponent implements OnInit {
   }
 
   add() {
-    this.element = { nombre: ''};
+    this.element = {
+      id: null,
+      cantidad: 0,
+      precioVenta: 0,
+      precioAlquiler: 0,
+      juego: {id: null},
+      plataforma: {id: null, nombre: ''},
+      formato: '',
+      fechaCompra: null,
+      fechaVenta: null
+    };
     this.editing = true;
   }
 
@@ -86,7 +96,7 @@ export class ArticulosComponent implements OnInit {
   }
 
   saveElement() {
-    if (this.element._id) {
+    if (this.element.id) {
       this.articulosService.updateArticulo(this.element).then( () => {
         this.readArticulos();
         this.editing = false;

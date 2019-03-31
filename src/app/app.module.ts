@@ -26,6 +26,7 @@ import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ScanbarcodeComponent } from './modals/scanbarcode/scanbarcode.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 const appRoutingProviders: any = [];
 
@@ -48,6 +49,7 @@ const appRoutingProviders: any = [];
     FormsModule,
     HttpModule,
     MatComponentsModule,
+    DragDropModule,
     MatDialogModule,
     BarecodeScannerLivestreamModule,
     RouterModule.forRoot([

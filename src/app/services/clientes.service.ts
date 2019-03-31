@@ -1,6 +1,7 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Cliente } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,12 @@ export class ClientesService {
     return this.http.delete(this.baseUrl + 'cliente/' + id).toPromise();
   }
 
-  public updateCliente(element: any): Promise<any> {
-    return this.http.put(this.baseUrl + 'cliente/' + element._id, element ).toPromise();
+  public updateCliente(cliente: Cliente): Promise<any> {
+    return this.http.put(this.baseUrl + 'cliente/' + cliente.id, cliente ).toPromise();
   }
 
-  public addCliente(element: any): Promise<any> {
-    return this.http.post(this.baseUrl + 'cliente', element).toPromise();
+  public addCliente(cliente: Cliente): Promise<any> {
+    return this.http.post(this.baseUrl + 'cliente', cliente).toPromise();
   }
 
 }

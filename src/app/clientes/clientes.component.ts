@@ -57,8 +57,9 @@ export class ClientesComponent implements OnInit {
   }
 
   remove(id: number) {
-    this.clientesService.deleteCliente(id).then( () => {
-      this.readClientes();
+    this.clientesService.deleteCliente(id).then( (clientes) => {
+      this.clientes = clientes.json();
+      this.updateClientesToShow();
     });
   }
 
@@ -72,15 +73,17 @@ export class ClientesComponent implements OnInit {
   }
 
   saveElement() {
-    if (this.element._id) {
-      this.clientesService.updateCliente(this.element).then( () => {
+    if (this.element.id) {
+      this.clientesService.updateCliente(this.element).then( (clientes) => {
+        this.clientes = clientes.json();
+        this.updateClientesToShow();
         this.editing = false;
-        this.readClientes();
       });
     } else {
-      this.clientesService.addCliente(this.element).then( () => {
+      this.clientesService.addCliente(this.element).then( (clientes) => {
+        this.clientes = clientes.json();
+        this.updateClientesToShow();
         this.editing = false;
-        this.readClientes();
       });
     }
   }

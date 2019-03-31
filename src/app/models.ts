@@ -22,13 +22,20 @@ export interface Juego {
 }
 
 export interface Articulo {
+  id?: number;
+  cantidad?: number;
+  precioVenta?: number;
+  precioAlquiler?: number;
+  juego?: Juego;
+  plataforma?: Plataforma;
+  formato?: string;
+  fechaCompra?: Date;
+  fechaVenta?: Date;
+}
+
+export interface Alquiler {
   id: number;
-  cantidad: number;
-  precioVenta: number;
-  precioAlquiler: number;
-  juego: Juego;
-  plataforma: Plataforma;
-  formato: string;
-  fechaCompra: Date;
-  fechaVenta: Date;
+  articulo?: Articulo;
+  fechaInicio?: Date;
+  fechaFin?: Date;
 }
