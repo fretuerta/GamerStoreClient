@@ -30,10 +30,16 @@
             <button mat-button (click)="edit(element)"> {{element.formato}} </button>
           </td>
         </ng-container>
-        <ng-container matColumnDef="cantidad">
-          <th mat-header-cell *matHeaderCellDef> {{'quantity'|translate}} </th>
+        <ng-container matColumnDef="cantDisponible">
+          <th mat-header-cell *matHeaderCellDef> {{'available'|translate}} </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="edit(element)"> {{element.cantidad}} </button>
+            <button mat-button (click)="edit(element)"> {{element.cantDisponible}} </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="cantAlquilados">
+          <th mat-header-cell *matHeaderCellDef> {{'rented'|translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="edit(element)"> {{element.cantAlquilados}} </button>
           </td>
         </ng-container>
         <ng-container matColumnDef="precioAlquiler">
@@ -77,42 +83,45 @@
 <div *ngIf="editing">
   <div class="form_block">
     <mat-form-field>
-      <mat-select placeholder="{{'game'|translate}}" [(ngModel)]="element.juego.id">
+      <mat-select placeholder="{{'game'|translate}}" [(ngModel)]="articulo.juego.id">
         <mat-option *ngFor="let juego of juegos" [value]="juego.id">
           {{juego.nombre}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-select placeholder="{{'platform'|translate}}" [(ngModel)]="element.plataforma.id">
+      <mat-select placeholder="{{'platform'|translate}}" [(ngModel)]="articulo.plataforma.id">
         <mat-option *ngFor="let plataforma of plataformas" [value]="plataforma.id">
           {{plataforma.nombre}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-select placeholder="{{'format'|translate}}" [(ngModel)]="element.formato">
+      <mat-select placeholder="{{'format'|translate}}" [(ngModel)]="articulo.formato">
         <mat-option *ngFor="let formato of formatos" [value]="formato.nombre">
           {{formato.nombre}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <input type="number" matInput placeholder="{{'quantity'|translate}}" [(ngModel)]="element.cantidad">
+      <input type="number" matInput placeholder="{{'available'|translate}}" [(ngModel)]="articulo.cantDisponible">
     </mat-form-field>
     <mat-form-field>
-      <input type="number" matInput placeholder="{{'rentPrice'|translate}}" [(ngModel)]="element.precioAlquiler">
+      <input type="number" matInput placeholder="{{'rented'|translate}}" [(ngModel)]="articulo.cantAlquilados">
     </mat-form-field>
     <mat-form-field>
-      <input type="number" matInput placeholder="{{'salePrice'|translate}}" [(ngModel)]="element.precioVenta">
+      <input type="number" matInput placeholder="{{'rentPrice'|translate}}" [(ngModel)]="articulo.precioAlquiler">
     </mat-form-field>
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="{{'buyDate'|translate}}" [(ngModel)]="element.fechaCompra">
+      <input type="number" matInput placeholder="{{'salePrice'|translate}}" [(ngModel)]="articulo.precioVenta">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="{{'buyDate'|translate}}" [(ngModel)]="articulo.fechaCompra">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
-      <input matInput [matDatepicker]="picker2" placeholder="{{'sellDate'|translate}}" [(ngModel)]="element.fechaVenta">
+      <input matInput [matDatepicker]="picker2" placeholder="{{'sellDate'|translate}}" [(ngModel)]="articulo.fechaVenta">
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>

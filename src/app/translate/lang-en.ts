@@ -1,4 +1,5 @@
 export const LANG_EN_TRANS = {
+    'available': 'Available',
     'address': 'Address',
     'buyDate': 'Buy Date',
     'codPostal': 'Cod',

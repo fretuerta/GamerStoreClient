@@ -23,7 +23,8 @@ export interface Juego {
 
 export interface Articulo {
   id?: number;
-  cantidad?: number;
+  cantDisponible?: number;
+  cantAlquilados?: number;
   precioVenta?: number;
   precioAlquiler?: number;
   juego?: Juego;

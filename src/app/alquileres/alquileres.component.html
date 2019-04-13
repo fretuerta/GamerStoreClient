@@ -14,13 +14,13 @@
       <div class="drop-list-container">
         <h2>{{'items'|translate}}</h2>
         <div cdkDropList [cdkDropListData]="articulosToShow" class="drop-list" (cdkDropListDropped)="drop($event)">
-          <div class="drop-list-box" *ngFor="let articulo of articulosToShow" cdkDrag>{{articulo.nombre}}</div>
+          <div class="drop-list-box" *ngFor="let articulo of articulosToShow" cdkDrag (dblclick)="addToAlquilados(articulo)">{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
         </div>
       </div>
       <div class="drop-list-container">
         <h2>{{'rented'|translate}}</h2>
         <div cdkDropList [cdkDropListData]="articulosAlquilados" class="drop-list" (cdkDropListDropped)="drop($event)">
-          <div class="drop-list-box" *ngFor="let articulo of articulosAlquilados" cdkDrag>{{articulo.nombre}}</div>
+          <div class="drop-list-box" *ngFor="let articulo of articulosAlquilados" cdkDrag (dblclick)="removeFromAlquilados(articulo)">{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
         </div>
       </div>
     </div>

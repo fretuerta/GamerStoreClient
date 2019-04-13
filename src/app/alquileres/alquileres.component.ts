@@ -11,8 +11,8 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 export class AlquileresComponent implements OnInit {
 
   articulos: Articulo[];
-  articulosToShow: Articulo[];
-  articulosAlquilados: Alquiler[];
+  articulosToShow: Articulo[] = [];
+  articulosAlquilados: Articulo[] = [];
 
   displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantidad',
       'precioAlquiler', 'precioVenta', 'fechaCompra', 'fechaVenta', 'action'];
@@ -37,7 +37,9 @@ export class AlquileresComponent implements OnInit {
       if (articulo.juego.nombre.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
         articulo.fechaCompra = articulo.fechaCompra ? new Date(articulo.fechaCompra) : null;
         articulo.fechaVenta = articulo.fechaVenta ?  new Date(articulo.fechaVenta) : null;
-        this.articulosToShow.push(articulo);
+        if (!this.articulosAlquilados.includes(articulo)) {
+          this.articulosToShow.push(articulo);
+        }
       }
     });
   }
@@ -61,6 +63,16 @@ export class AlquileresComponent implements OnInit {
                         event.previousIndex,
                         event.currentIndex);
     }
+  }
+
+  addToAlquilados(articulo: Articulo) {
+    this.articulosAlquilados.push(articulo);
+    this.updateArticulosToShow();
+  }
+
+  removeFromAlquilados(articulo: Articulo) {
+    this.articulosAlquilados = this.articulosAlquilados.filter(element => element.id != articulo.id);
+    this.updateArticulosToShow();
   }
 
 }

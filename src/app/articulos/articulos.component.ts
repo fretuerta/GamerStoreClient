@@ -15,10 +15,10 @@ export class ArticulosComponent implements OnInit {
   plataformas: Plataforma[];
   articulos: Articulo[];
   articulosToShow: Articulo[];
-  displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantidad',
+  displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantDisponible', 'cantAlquilados',
       'precioAlquiler', 'precioVenta', 'fechaCompra', 'fechaVenta', 'action'];
   editing = false;
-  element: Articulo;
+  articulo: Articulo;
   searchText = '';
   formatos: any[];
 
@@ -66,7 +66,8 @@ export class ArticulosComponent implements OnInit {
   }
 
   edit(element: any) {
-    Object.assign(this.element, element);
+    this.articulo = {};
+    Object.assign(this.articulo, element);
     this.editing = true;
   }
 
@@ -77,9 +78,19 @@ export class ArticulosComponent implements OnInit {
   }
 
   add() {
-    this.element = {
+    this.clearArticulo();
+    this.editing = true;
+  }
+
+  closeEditing() {
+    this.editing = false;
+  }
+
+  clearArticulo() {
+    this.articulo = {
       id: null,
-      cantidad: 0,
+      cantDisponible: 0,
+      cantAlquilados: 0,
       precioVenta: 0,
       precioAlquiler: 0,
       juego: {id: null},
@@ -88,21 +99,16 @@ export class ArticulosComponent implements OnInit {
       fechaCompra: null,
       fechaVenta: null
     };
-    this.editing = true;
-  }
-
-  closeEditing() {
-    this.editing = false;
   }
 
   saveElement() {
-    if (this.element.id) {
-      this.articulosService.updateArticulo(this.element).then( () => {
+    if (this.articulo.id) {
+      this.articulosService.updateArticulo(this.articulo).then( () => {
         this.readArticulos();
         this.editing = false;
       });
     } else {
-      this.articulosService.addArticulo(this.element).then( () => {
+      this.articulosService.addArticulo(this.articulo).then( () => {
         this.readArticulos();
         this.editing = false;
       });
