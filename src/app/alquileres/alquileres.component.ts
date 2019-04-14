@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticulosService } from '../services/articulos.service';
-import { Articulo, Alquiler } from '../models';
+import { Articulo, Alquiler, Cliente } from '../models';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { ClientesService } from '../services/clientes.service';
 
 @Component({
   selector: 'app-alquileres',
@@ -16,19 +17,25 @@ export class AlquileresComponent implements OnInit {
 
   displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantidad',
       'precioAlquiler', 'precioVenta', 'fechaCompra', 'fechaVenta', 'action'];
-  editing = false;
-  
-
+   
   searchText = '';
   formatos: any[];
+  clientes: Cliente[];
+  cliente: Cliente;
+  alquiler: Alquiler = {};
 
-  constructor(protected articulosService: ArticulosService) { }
+  constructor(protected articulosService: ArticulosService,
+              protected clientesService: ClientesService) { }
 
   ngOnInit() {
+    this.clearAlquiler();
     this.articulosService.readArticulos().then( (articulos) => {
       this.articulos = articulos.json();
       this.updateArticulosToShow();
     });
+    this.clientesService.readClientes().then( (clientes) => {
+      this.clientes = clientes.json();
+    })
   }
 
   updateArticulosToShow() {
@@ -47,11 +54,6 @@ export class AlquileresComponent implements OnInit {
   clearSearchText() {
     this.searchText = '';
     this.updateArticulosToShow();
-  }
-
-
-  closeEditing() {
-    this.editing = false;
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -73,6 +75,20 @@ export class AlquileresComponent implements OnInit {
   removeFromAlquilados(articulo: Articulo) {
     this.articulosAlquilados = this.articulosAlquilados.filter(element => element.id != articulo.id);
     this.updateArticulosToShow();
+  }
+
+  saveAlquiler() {
+    console.log('cliente: ', this.cliente)
+  }
+
+  clearAlquiler() {
+    this.alquiler = {
+      id: null,
+      articulo: null,
+      cliente: null,
+      fechaInicio: null,
+      fechaFin: null
+    }
   }
 
 }

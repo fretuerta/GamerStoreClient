@@ -35,8 +35,9 @@ export interface Articulo {
 }
 
 export interface Alquiler {
-  id: number;
+  id?: number;
   articulo?: Articulo;
+  cliente?: Cliente;
   fechaInicio?: Date;
   fechaFin?: Date;
 }

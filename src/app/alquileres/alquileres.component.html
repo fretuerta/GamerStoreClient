@@ -1,77 +1,47 @@
 <h1><i class="material-icons">book</i> {{'rent'|translate}}</h1>
-<div *ngIf="!editing">
-  <div class="form_block">
-    <label>{{'search'|translate}}:
-      <input type="text" [(ngModel)]="searchText" (keyup)="updateArticulosToShow()">
-    </label>
-    <i class="material-icons clearButton" (click)="clearSearchText()">remove_circle</i>
-    <span *ngIf="articulos && articulosToShow">
-      {{'found'|translate}} {{articulosToShow.length}} {{'of'|translate}} {{articulos.length}}
-    </span>
-  </div>
-  <div class="flex_box">
-    <div cdkDropListGroup>
-      <div class="drop-list-container">
-        <h2>{{'items'|translate}}</h2>
-        <div cdkDropList [cdkDropListData]="articulosToShow" class="drop-list" (cdkDropListDropped)="drop($event)">
-          <div class="drop-list-box" *ngFor="let articulo of articulosToShow" cdkDrag (dblclick)="addToAlquilados(articulo)">{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
-        </div>
+
+<div class="form_block">
+  <mat-form-field>
+    <mat-select placeholder="{{'client'|translate}}" [(ngModel)]="cliente">
+      <mat-option *ngFor="let element of clientes" [value]="element">
+          {{element.apellidos}}, {{element.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="{{'buyDate'|translate}}" [(ngModel)]="alquiler.fechaInicio">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker2" placeholder="{{'sellDate'|translate}}" [(ngModel)]="alquiler.fechaFin">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  <button mat-button (click)="saveAlquiler()"><i class="material-icons">save</i> {{'save'|translate}} </button>
+</div>
+<div class="form_block">
+  <label>{{'search'|translate}}:
+    <input type="text" [(ngModel)]="searchText" (keyup)="updateArticulosToShow()">
+  </label>
+  <i class="material-icons clearButton" (click)="clearSearchText()">remove_circle</i>
+  <span *ngIf="articulos && articulosToShow">
+    {{'found'|translate}} {{articulosToShow.length}} {{'of'|translate}} {{articulos.length}}
+  </span>
+</div>
+<div class="flex_box">
+  <div cdkDropListGroup>
+    <div class="drop-list-container">
+      <h2>{{'items'|translate}}</h2>
+      <div cdkDropList [cdkDropListData]="articulosToShow" class="drop-list" (cdkDropListDropped)="drop($event)">
+        <div class="drop-list-box" *ngFor="let articulo of articulosToShow" cdkDrag (dblclick)="addToAlquilados(articulo)">{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
       </div>
-      <div class="drop-list-container">
-        <h2>{{'rented'|translate}}</h2>
-        <div cdkDropList [cdkDropListData]="articulosAlquilados" class="drop-list" (cdkDropListDropped)="drop($event)">
-          <div class="drop-list-box" *ngFor="let articulo of articulosAlquilados" cdkDrag (dblclick)="removeFromAlquilados(articulo)">{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
-        </div>
+    </div>
+    <div class="drop-list-container">
+      <h2>{{'rented'|translate}}</h2>
+      <div cdkDropList [cdkDropListData]="articulosAlquilados" class="drop-list" (cdkDropListDropped)="drop($event)">
+        <div class="drop-list-box" *ngFor="let articulo of articulosAlquilados" cdkDrag (dblclick)="removeFromAlquilados(articulo)">{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
       </div>
     </div>
   </div>
 </div>
-<div *ngIf="editing">
-  <div class="form_block">
-    <mat-form-field>
-      <mat-select placeholder="{{'game'|translate}}" [(ngModel)]="juegoId">
-        <mat-option *ngFor="let juego of juegos" [value]="juego.id">
-          {{juego.nombre}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select placeholder="{{'platform'|translate}}" [(ngModel)]="element.plataforma.id">
-        <mat-option *ngFor="let plataforma of plataformas" [value]="plataforma.id">
-          {{plataforma.nombre}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select placeholder="{{'format'|translate}}" [(ngModel)]="element.formato">
-        <mat-option *ngFor="let formato of formatos" [value]="formato.nombre">
-          {{formato.nombre}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <input type="number" matInput placeholder="{{'quantity'|translate}}" [(ngModel)]="element.cantidad">
-    </mat-form-field>
-    <mat-form-field>
-      <input type="number" matInput placeholder="{{'rentPrice'|translate}}" [(ngModel)]="element.precioAlquiler">
-    </mat-form-field>
-    <mat-form-field>
-      <input type="number" matInput placeholder="{{'salePrice'|translate}}" [(ngModel)]="element.precioVenta">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="{{'buyDate'|translate}}" [(ngModel)]="element.fechaCompra">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker2" placeholder="{{'sellDate'|translate}}" [(ngModel)]="element.fechaVenta">
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div class="buttons_block">
-    <button mat-button (click)="saveElement()"><i class="material-icons">save</i> {{'save'|translate}} </button>
-    <button mat-button (click)="closeEditing()"><i class="material-icons">close</i> {{'cancel'|translate}} </button>
-  </div>
-</div>
-

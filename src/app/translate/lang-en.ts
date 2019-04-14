@@ -19,6 +19,7 @@ export const LANG_EN_TRANS = {
     'platform': 'Plataform',
     'platforms': 'Platforms',
     'print': 'Print',
+    'client': 'Client',
     'clients': 'Clients',
     'game': 'Game',
     'games': 'Games',
