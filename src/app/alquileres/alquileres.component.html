@@ -7,14 +7,15 @@
           {{element.apellidos}}, {{element.nombre}}
       </mat-option>
     </mat-select>
+    <mat-hint *ngIf="showClientError">{{'clientRequiredError'|translate}}</mat-hint>
   </mat-form-field>
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="{{'buyDate'|translate}}" [(ngModel)]="alquiler.fechaInicio">
+    <input matInput [matDatepicker]="picker" placeholder="{{'rentDate'|translate}}" [(ngModel)]="alquiler.fechaInicio">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
-    <input matInput [matDatepicker]="picker2" placeholder="{{'sellDate'|translate}}" [(ngModel)]="alquiler.fechaFin">
+    <input matInput [matDatepicker]="picker2" placeholder="{{'returnDate'|translate}}" [(ngModel)]="alquiler.fechaFin">
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>

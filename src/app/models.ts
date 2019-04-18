@@ -34,10 +34,17 @@ export interface Articulo {
   fechaVenta?: Date;
 }
 
-export interface Alquiler {
+export interface AlquilerDetalle {
   id?: number;
   articulo?: Articulo;
+  cantidad?: number;
+  precio?: number;
+}
+
+export interface Alquiler {
+  id?: number;
   cliente?: Cliente;
   fechaInicio?: Date;
   fechaFin?: Date;
+  alquilerDetalles?: AlquilerDetalle[];
 }

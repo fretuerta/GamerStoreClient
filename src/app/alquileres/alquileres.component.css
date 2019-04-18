@@ -59,3 +59,7 @@
   mat-form-field {
     margin: 0.5rem;
   }
+
+  .mat-hint {
+    color: red
+  }

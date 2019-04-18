@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticulosService } from '../services/articulos.service';
-import { Articulo, Alquiler, Cliente } from '../models';
+import { Articulo, Alquiler, Cliente, AlquilerDetalle } from '../models';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ClientesService } from '../services/clientes.service';
+import { AlquileresService } from '../services/alquileres.service';
 
 @Component({
   selector: 'app-alquileres',
@@ -25,7 +26,8 @@ export class AlquileresComponent implements OnInit {
   alquiler: Alquiler = {};
 
   constructor(protected articulosService: ArticulosService,
-              protected clientesService: ClientesService) { }
+              protected clientesService: ClientesService,
+              protected alquileresService: AlquileresService) { }
 
   ngOnInit() {
     this.clearAlquiler();
@@ -79,15 +81,34 @@ export class AlquileresComponent implements OnInit {
 
   saveAlquiler() {
     console.log('cliente: ', this.cliente)
+    this.showClientError = !this.cliente;
+    if (this.cliente) {
+      this.alquiler.cliente = this.cliente;
+      this.alquiler.alquilerDetalles = [];
+      this.articulosAlquilados.forEach((element)=>{
+        let alquilerDetalle: AlquilerDetalle = {
+          articulo: element,
+          cantidad: 5,
+          precio: 3.23
+        }
+        this.alquiler.alquilerDetalles.push(alquilerDetalle);
+      })
+      this.alquileresService.addAlquiler(this.alquiler).then((result)=>{
+        this.articulosAlquilados = [];
+        this.updateArticulosToShow();
+      });
+    } else {
+
+    }
   }
+  showClientError = false;
 
   clearAlquiler() {
     this.alquiler = {
       id: null,
-      articulo: null,
       cliente: null,
-      fechaInicio: null,
-      fechaFin: null
+      fechaInicio: new Date(),
+      fechaFin: new Date( Date.now() + (86400000 * 7 ))
     }
   }
 
