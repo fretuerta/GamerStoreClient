@@ -26,6 +26,7 @@ export const LANG_ES_TRANS = {
     'games': 'Juegos',
     'sale': 'Venta',
     'salePrice': 'Precio Venta',
+    'salesCheck': 'Facturas',
     'rent': 'Alquiler',
     'rentDate': 'Fecha de Alquiler',
     'rented': 'Alquilado',

@@ -6,6 +6,7 @@ export const LANG_EN_TRANS = {
     'chooseImage': 'Choose Image',
     'city': 'City',
     'configuration': 'Configuration',
+    'salesCheck': 'Sales Check',
     'sellDate': 'Sell Date',
     'state': 'State',
     'language': 'Language',

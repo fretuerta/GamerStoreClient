@@ -27,6 +27,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { ScanbarcodeComponent } from './modals/scanbarcode/scanbarcode.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { FacturasComponent } from './facturas/facturas.component';
 
 const appRoutingProviders: any = [];
 
@@ -42,7 +43,8 @@ const appRoutingProviders: any = [];
     ClientesComponent,
     ScanbarcodeComponent,
     VentasComponent,
-    AlquileresComponent
+    AlquileresComponent,
+    FacturasComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -60,7 +62,8 @@ const appRoutingProviders: any = [];
       { path: 'articulos', component: ArticulosComponent },
       { path: 'clientes', component: ClientesComponent },
       { path: 'ventas', component: VentasComponent },
-      { path: 'alquileres', component: AlquileresComponent }
+      { path: 'alquileres', component: AlquileresComponent },
+      { path: 'facturas', component: FacturasComponent }
     ])
   ],
   entryComponents: [ ScanbarcodeComponent ],
