@@ -36,9 +36,12 @@
       <h2>{{'items'|translate}}</h2>
       <div cdkDropList [cdkDropListData]="articulosToShow" class="drop-list" (cdkDropListDropped)="drop($event)">
         <div class="drop-list-box" *ngFor="let articulo of articulosToShow" cdkDrag (dblclick)="addToAlquilados(articulo)">
-          <div>{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
-          <div>
-            <label>{{'available'|translate}}: {{articulo.cantDispAlquiler}}</label>
+          <div *ngIf="articulo.juego.caratula" class="coverButton"><img src="{{articulo.juego.caratula}}"></div>
+          <div class="allBlock">
+            <div>{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
+            <div>
+              <label>{{'available'|translate}}: {{articulo.cantDispAlquiler}}</label>
+            </div>
           </div>
         </div>
       </div>
@@ -50,6 +53,7 @@
       </div>
       <div cdkDropList [cdkDropListData]="articulosAlquilados" class="drop-list" (cdkDropListDropped)="drop($event)">
         <div class="drop-list-box" *ngFor="let articulo of articulosAlquilados" cdkDrag (dblclick)="removeFromAlquilados(articulo)">
+          <div *ngIf="articulo.juego.caratula" class="coverButton"><img src="{{articulo.juego.caratula}}"></div>
           <div class="allBlock">
             <div class="sameLine">
                 <div>{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
