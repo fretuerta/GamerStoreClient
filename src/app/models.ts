@@ -23,15 +23,14 @@ export interface Juego {
 
 export interface Articulo {
   id?: number;
-  cantDisponible?: number;
-  cantAlquilados?: number;
+  cantDispAlquiler?: number;
+  cantDispVenta?: number;
   precioVenta?: number;
   precioAlquiler?: number;
   juego?: Juego;
   plataforma?: Plataforma;
   formato?: string;
-  fechaCompra?: Date;
-  fechaVenta?: Date;
+  cantidad?: number;
 }
 
 export interface AlquilerDetalle {

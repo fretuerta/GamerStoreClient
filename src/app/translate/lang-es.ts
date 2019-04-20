@@ -18,6 +18,7 @@ export const LANG_ES_TRANS = {
     'format': 'Formato',
     'platform': 'Plataforma',
     'platforms': 'Plataformas',
+    'price': 'Precio',
     'print': 'Imprimir',
     'client': 'Cliente',
     'clients': 'Clientes',
@@ -54,6 +55,8 @@ export const LANG_ES_TRANS = {
     'cover': 'Carátula',
     'quantity': 'Cantidad',
     'rent_price': 'Precio Alquiler',
+    'rent_available': 'Disponible Alquiler',
     'sale_price': 'Precio Venta',
+    'sale_available': 'Disponible Venta',
     'code': 'Código'
 };

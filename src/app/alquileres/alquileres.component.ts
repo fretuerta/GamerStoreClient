@@ -44,9 +44,8 @@ export class AlquileresComponent implements OnInit {
     this.articulosToShow = [];
     this.articulos.forEach(articulo => {
       if (articulo.juego.nombre.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
-        articulo.fechaCompra = articulo.fechaCompra ? new Date(articulo.fechaCompra) : null;
-        articulo.fechaVenta = articulo.fechaVenta ?  new Date(articulo.fechaVenta) : null;
         if (!this.articulosAlquilados.includes(articulo)) {
+          articulo.cantidad = 1;
           this.articulosToShow.push(articulo);
         }
       }
@@ -112,4 +111,11 @@ export class AlquileresComponent implements OnInit {
     }
   }
 
+  sumaTotal() {
+    let sumaT = 0;
+    this.articulosAlquilados.forEach((articulo)=>{
+      sumaT += (articulo.cantidad * articulo.precioAlquiler);
+    })
+    return sumaT;
+  }
 }

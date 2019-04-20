@@ -30,16 +30,16 @@
             <button mat-button (click)="edit(element)"> {{element.formato}} </button>
           </td>
         </ng-container>
-        <ng-container matColumnDef="cantDisponible">
-          <th mat-header-cell *matHeaderCellDef> {{'available'|translate}} </th>
+        <ng-container matColumnDef="cantDispAlquiler">
+          <th mat-header-cell *matHeaderCellDef> {{'rent_available'|translate}} </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="edit(element)"> {{element.cantDisponible}} </button>
+            <button mat-button (click)="edit(element)"> {{element.cantDispAlquiler}} </button>
           </td>
         </ng-container>
-        <ng-container matColumnDef="cantAlquilados">
-          <th mat-header-cell *matHeaderCellDef> {{'rented'|translate}} </th>
+        <ng-container matColumnDef="cantDispVenta">
+          <th mat-header-cell *matHeaderCellDef> {{'sale_available'|translate}} </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="edit(element)"> {{element.cantAlquilados}} </button>
+            <button mat-button (click)="edit(element)"> {{element.cantDispVenta}} </button>
           </td>
         </ng-container>
         <ng-container matColumnDef="precioAlquiler">
@@ -52,18 +52,6 @@
           <th mat-header-cell *matHeaderCellDef> {{'sale_price'|translate}} </th>
           <td mat-cell *matCellDef="let element">
             <button mat-button (click)="edit(element)"> {{element.precioVenta}} </button>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="fechaCompra">
-          <th mat-header-cell *matHeaderCellDef> {{'buyDate'|translate}} </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="edit(element)"> {{element.fechaCompra | date}} </button>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="fechaVenta">
-          <th mat-header-cell *matHeaderCellDef> {{'sellDate'|translate}} </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="edit(element)"> {{element.fechaVenta | date}} </button>
           </td>
         </ng-container>
         <ng-container matColumnDef="action">
@@ -104,26 +92,16 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <input type="number" matInput placeholder="{{'available'|translate}}" [(ngModel)]="articulo.cantDisponible">
+      <input type="number" matInput placeholder="{{'rent_available'|translate}}" [(ngModel)]="articulo.cantDispAlquiler">
     </mat-form-field>
     <mat-form-field>
-      <input type="number" matInput placeholder="{{'rented'|translate}}" [(ngModel)]="articulo.cantAlquilados">
+      <input type="number" matInput placeholder="{{'sale_available'|translate}}" [(ngModel)]="articulo.cantDispVenta">
     </mat-form-field>
     <mat-form-field>
       <input type="number" matInput placeholder="{{'rentPrice'|translate}}" [(ngModel)]="articulo.precioAlquiler">
     </mat-form-field>
     <mat-form-field>
       <input type="number" matInput placeholder="{{'salePrice'|translate}}" [(ngModel)]="articulo.precioVenta">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="{{'buyDate'|translate}}" [(ngModel)]="articulo.fechaCompra">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker2" placeholder="{{'sellDate'|translate}}" [(ngModel)]="articulo.fechaVenta">
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
   </div>
   <div class="buttons_block">

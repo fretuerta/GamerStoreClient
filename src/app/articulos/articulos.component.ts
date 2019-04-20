@@ -15,8 +15,8 @@ export class ArticulosComponent implements OnInit {
   plataformas: Plataforma[];
   articulos: Articulo[];
   articulosToShow: Articulo[];
-  displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantDisponible', 'cantAlquilados',
-      'precioAlquiler', 'precioVenta', 'fechaCompra', 'fechaVenta', 'action'];
+  displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantDispAlquiler', 'cantDispVenta',
+      'precioAlquiler', 'precioVenta', 'action'];
   editing = false;
   articulo: Articulo;
   searchText = '';
@@ -53,8 +53,6 @@ export class ArticulosComponent implements OnInit {
     this.articulosToShow = [];
     this.articulos.forEach(articulo => {
       if (articulo.juego.nombre.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
-        articulo.fechaCompra = articulo.fechaCompra ? new Date(articulo.fechaCompra) : null;
-        articulo.fechaVenta = articulo.fechaVenta ?  new Date(articulo.fechaVenta) : null;
         this.articulosToShow.push(articulo);
       }
     });
@@ -89,15 +87,13 @@ export class ArticulosComponent implements OnInit {
   clearArticulo() {
     this.articulo = {
       id: null,
-      cantDisponible: 0,
-      cantAlquilados: 0,
+      cantDispAlquiler: 0,
+      cantDispVenta: 0,
       precioVenta: 0,
       precioAlquiler: 0,
       juego: {id: null},
       plataforma: {id: null, nombre: ''},
-      formato: '',
-      fechaCompra: null,
-      fechaVenta: null
+      formato: ''
     };
   }
 

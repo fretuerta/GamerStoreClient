@@ -19,6 +19,7 @@ export const LANG_EN_TRANS = {
     'format': 'Format',
     'platform': 'Plataform',
     'platforms': 'Platforms',
+    'price': 'Price',
     'print': 'Print',
     'client': 'Client',
     'clients': 'Clients',
@@ -54,6 +55,8 @@ export const LANG_EN_TRANS = {
     'cover': 'Cover',
     'quantity': 'Quantity',
     'rent_price': 'Rent Price',
+    'rent_available': 'Rent Available',
     'sale_price': 'Sale Price',
+    'sale_available': 'Sale Available',
     'code': 'Code'
 };

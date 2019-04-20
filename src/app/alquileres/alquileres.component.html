@@ -35,13 +35,40 @@
     <div class="drop-list-container">
       <h2>{{'items'|translate}}</h2>
       <div cdkDropList [cdkDropListData]="articulosToShow" class="drop-list" (cdkDropListDropped)="drop($event)">
-        <div class="drop-list-box" *ngFor="let articulo of articulosToShow" cdkDrag (dblclick)="addToAlquilados(articulo)">{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
+        <div class="drop-list-box" *ngFor="let articulo of articulosToShow" cdkDrag (dblclick)="addToAlquilados(articulo)">
+          <div>{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
+          <div>
+            <label>{{'available'|translate}}: {{articulo.cantDispAlquiler}}</label>
+          </div>
+        </div>
       </div>
     </div>
     <div class="drop-list-container">
-      <h2>{{'rented'|translate}}</h2>
+      <div class="sameLine">
+          <h2>{{'rented'|translate}}</h2>
+          <h2>Total: {{sumaTotal()}}</h2>
+      </div>
       <div cdkDropList [cdkDropListData]="articulosAlquilados" class="drop-list" (cdkDropListDropped)="drop($event)">
-        <div class="drop-list-box" *ngFor="let articulo of articulosAlquilados" cdkDrag (dblclick)="removeFromAlquilados(articulo)">{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
+        <div class="drop-list-box" *ngFor="let articulo of articulosAlquilados" cdkDrag (dblclick)="removeFromAlquilados(articulo)">
+          <div class="allBlock">
+            <div class="sameLine">
+                <div>{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
+                <div>
+                  <label> {{'price'|translate}}: {{articulo.precioAlquiler}}</label>
+                </div>
+            </div>
+            <div class="sameLine">
+              <div>
+                <label> {{'available'|translate}}: {{articulo.cantDispAlquiler}}</label>
+                <label> {{'quantity'|translate}}: </label>
+                  <input type="number" min="1" max="{{articulo.cantDispAlquiler}}" [(ngModel)]="articulo.cantidad" (dblclick)="$event.stopPropagation()">
+              </div>
+              <div>
+                <label> Total: {{articulo.precioAlquiler * articulo.cantidad}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
