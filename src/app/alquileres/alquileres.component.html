@@ -1,4 +1,4 @@
-<h1><i class="material-icons">book</i> {{'rent'|translate}}</h1>
+<h1><i class="material-icons">swap_horiz</i> {{'rent'|translate}}</h1>
 
 <div class="form_block">
   <mat-form-field>
@@ -19,8 +19,11 @@
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>
-  <button mat-button (click)="saveAlquiler()"><i class="material-icons">save</i> {{'save'|translate}} </button>
+  <button mat-stroked-button color="primary" (click)="scanBarCode()"><i class="material-icons">view_array</i> Scanear</button>
+  <button mat-stroked-button (click)="saveAlquiler()"><i class="material-icons">save</i> {{'save'|translate}} </button>
 </div>
+<mat-hint *ngIf="showScannerError">{{'scannerRequiredError'|translate}}</mat-hint>
+<mat-hint *ngIf="showEmptyListError">{{'emptyListError'|translate}}</mat-hint>
 <div class="form_block">
   <label>{{'search'|translate}}:
     <input type="text" [(ngModel)]="searchText" (keyup)="updateArticulosToShow()">
@@ -38,10 +41,9 @@
         <div class="drop-list-box" *ngFor="let articulo of articulosToShow" cdkDrag (dblclick)="addToAlquilados(articulo)">
           <div *ngIf="articulo.juego.caratula" class="coverButton"><img src="{{articulo.juego.caratula}}"></div>
           <div class="allBlock">
+            <div>{{articulo.codigo}}</div>
             <div>{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
-            <div>
-              <label>{{'available'|translate}}: {{articulo.cantDispAlquiler}}</label>
-            </div>
+            <div><label>{{'available'|translate}}: {{articulo.cantDispAlquiler}}</label></div>
           </div>
         </div>
       </div>
@@ -55,11 +57,10 @@
         <div class="drop-list-box" *ngFor="let articulo of articulosAlquilados" cdkDrag (dblclick)="removeFromAlquilados(articulo)">
           <div *ngIf="articulo.juego.caratula" class="coverButton"><img src="{{articulo.juego.caratula}}"></div>
           <div class="allBlock">
+            <div>{{articulo.codigo}}</div>
             <div class="sameLine">
                 <div>{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
-                <div>
-                  <label> {{'price'|translate}}: {{articulo.precioAlquiler}}</label>
-                </div>
+                <div><label> {{'price'|translate}}: {{articulo.precioAlquiler}}</label></div>
             </div>
             <div class="sameLine">
               <div>
@@ -68,7 +69,7 @@
                   <input type="number" min="1" max="{{articulo.cantDispAlquiler}}" [(ngModel)]="articulo.cantidad" (dblclick)="$event.stopPropagation()">
               </div>
               <div>
-                <label> Total: {{articulo.precioAlquiler * articulo.cantidad}}</label>
+                <label> Total: {{redonDosDec(articulo.precioAlquiler * articulo.cantidad)}}</label>
               </div>
             </div>
           </div>

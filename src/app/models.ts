@@ -18,6 +18,7 @@ export interface Plataforma {
 export interface Juego {
   id?: number;
   nombre?: string;
+  codigo?: string;
   caratula?: string;
 }
 
@@ -27,6 +28,7 @@ export interface Articulo {
   cantDispVenta?: number;
   precioVenta?: number;
   precioAlquiler?: number;
+  codigo?: string;
   juego?: Juego;
   plataforma?: Plataforma;
   formato?: string;

@@ -4,6 +4,8 @@ import { Articulo, Alquiler, Cliente, AlquilerDetalle } from '../models';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ClientesService } from '../services/clientes.service';
 import { AlquileresService } from '../services/alquileres.service';
+import { ScanbarcodeComponent } from '../modals/scanbarcode/scanbarcode.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-alquileres',
@@ -15,6 +17,7 @@ export class AlquileresComponent implements OnInit {
   articulos: Articulo[];
   articulosToShow: Articulo[] = [];
   articulosAlquilados: Articulo[] = [];
+  codigoBarras: string = "";
 
   displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantidad',
       'precioAlquiler', 'precioVenta', 'fechaCompra', 'fechaVenta', 'action'];
@@ -25,9 +28,14 @@ export class AlquileresComponent implements OnInit {
   cliente: Cliente;
   alquiler: Alquiler = {};
 
+  showScannerError = false;
+  showClientError = false;
+  showEmptyListError = false;
+
   constructor(protected articulosService: ArticulosService,
               protected clientesService: ClientesService,
-              protected alquileresService: AlquileresService) { }
+              protected alquileresService: AlquileresService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.clearAlquiler();
@@ -40,10 +48,54 @@ export class AlquileresComponent implements OnInit {
     })
   }
 
+  scanBarCode(): void {
+    const dialogRef = this.dialog.open(ScanbarcodeComponent, {
+      width: '500px',
+      minHeight: '300px',
+      hasBackdrop: true,
+      data: { codigo: this.codigoBarras }
+    });
+
+    dialogRef.afterClosed().toPromise().then(result => {
+      if (result) {
+        this.codigoBarras = result;
+        let encontrado = false;
+
+        this.articulosAlquilados.forEach( (articulo) => {
+          if (articulo.codigo.toUpperCase().indexOf(this.codigoBarras.toUpperCase()) >= 0) {
+            encontrado = true;
+            if (articulo.cantidad < articulo.cantDispAlquiler) {
+              articulo.cantidad++;
+            } else {
+              this.showScannerError = true;
+              setTimeout(()=>{ this.showScannerError = false }, 1500)
+            }
+          }
+        })
+
+        if (!encontrado) {
+          this.articulos.forEach((articulo) => {
+            if (articulo.codigo.toUpperCase().indexOf(this.codigoBarras.toUpperCase()) >= 0) {
+              encontrado = true;
+              this.addToAlquilados(articulo)
+            }
+          })
+        }
+
+        if (!encontrado) {
+          this.showScannerError = true;
+          setTimeout(()=>{ this.showScannerError = false }, 1500)
+        }
+    
+      }
+    });
+  }
+
   updateArticulosToShow() {
     this.articulosToShow = [];
     this.articulos.forEach(articulo => {
-      if (articulo.juego.nombre.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
+      if (articulo.juego.nombre.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0 ||
+        articulo.codigo.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
         if (!this.articulosAlquilados.includes(articulo)) {
           articulo.cantidad = 1;
           this.articulosToShow.push(articulo);
@@ -79,7 +131,12 @@ export class AlquileresComponent implements OnInit {
   }
 
   saveAlquiler() {
-    console.log('cliente: ', this.cliente)
+    if (this.articulosAlquilados.length == 0) {
+      this.showEmptyListError = true;
+      setTimeout(()=>{ this.showEmptyListError = false }, 1500)
+      return;
+    }
+    
     this.showClientError = !this.cliente;
     if (this.cliente) {
       this.alquiler.cliente = this.cliente;
@@ -100,7 +157,6 @@ export class AlquileresComponent implements OnInit {
 
     }
   }
-  showClientError = false;
 
   clearAlquiler() {
     this.alquiler = {
@@ -116,6 +172,10 @@ export class AlquileresComponent implements OnInit {
     this.articulosAlquilados.forEach((articulo)=>{
       sumaT += (articulo.cantidad * articulo.precioAlquiler);
     })
-    return sumaT;
+    return this.redonDosDec(sumaT);
+  }
+
+  redonDosDec(num: number) {
+    return (Math.round(num * 100) / 100)
   }
 }

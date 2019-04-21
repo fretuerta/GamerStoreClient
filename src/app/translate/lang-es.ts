@@ -13,6 +13,7 @@ export const LANG_ES_TRANS = {
     'editing': 'Editando',
     'es': 'Español',
     'en': 'Inglés',
+    'emptyListError': 'Lista de artículos vacía',
     'home': 'Inicio',
     'edit': 'Editar',
     'format': 'Formato',
@@ -58,5 +59,6 @@ export const LANG_ES_TRANS = {
     'rent_available': 'Disponible Alquiler',
     'sale_price': 'Precio Venta',
     'sale_available': 'Disponible Venta',
+    'scannerRequiredError': 'No Disponible',
     'code': 'Código'
 };

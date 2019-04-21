@@ -14,6 +14,7 @@ export const LANG_EN_TRANS = {
     'editing': 'Editing',
     'es': 'Spanish',
     'en': 'English',
+    'emptyListError': 'List of articles empty',
     'home': 'Home',
     'edit': 'Edit',
     'format': 'Format',
@@ -58,5 +59,6 @@ export const LANG_EN_TRANS = {
     'rent_available': 'Rent Available',
     'sale_price': 'Sale Price',
     'sale_available': 'Sale Available',
+    'scannerRequiredError': 'Not Available',
     'code': 'Code'
 };

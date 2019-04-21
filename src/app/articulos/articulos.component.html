@@ -30,6 +30,12 @@
             <button mat-button (click)="edit(element)"> {{element.formato}} </button>
           </td>
         </ng-container>
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef> {{'code'|translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="edit(element)"> {{element.codigo}} </button>
+          </td>
+        </ng-container>
         <ng-container matColumnDef="cantDispAlquiler">
           <th mat-header-cell *matHeaderCellDef> {{'rent_available'|translate}} </th>
           <td mat-cell *matCellDef="let element">
@@ -91,6 +97,10 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{'code'|translate}}" [(ngModel)]="articulo.codigo">
+    </mat-form-field>
+    <button mat-stroked-button color="primary" (click)="scanBarCode()"><i class="material-icons">view_array</i> Scanear</button>
     <mat-form-field>
       <input type="number" matInput placeholder="{{'rent_available'|translate}}" [(ngModel)]="articulo.cantDispAlquiler">
     </mat-form-field>

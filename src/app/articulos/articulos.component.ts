@@ -3,6 +3,8 @@ import { PlataformasService } from './../services/plataformas.service';
 import { Component, OnInit } from '@angular/core';
 import { ArticulosService } from '../services/articulos.service';
 import { Juego, Plataforma, Articulo } from 'src/app/models';
+import { MatDialog } from '@angular/material';
+import { ScanbarcodeComponent } from '../modals/scanbarcode/scanbarcode.component';
 
 @Component({
   selector: 'app-articulos',
@@ -15,7 +17,7 @@ export class ArticulosComponent implements OnInit {
   plataformas: Plataforma[];
   articulos: Articulo[];
   articulosToShow: Articulo[];
-  displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'cantDispAlquiler', 'cantDispVenta',
+  displayedColumns: string[] = ['juego', 'plataforma', 'formato', 'codigo', 'cantDispAlquiler', 'cantDispVenta',
       'precioAlquiler', 'precioVenta', 'action'];
   editing = false;
   articulo: Articulo;
@@ -24,7 +26,8 @@ export class ArticulosComponent implements OnInit {
 
   constructor(protected articulosService: ArticulosService,
               protected plataformasService: PlataformasService,
-              protected juegosService: JuegosService) { }
+              protected juegosService: JuegosService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.plataformasService.readPlataformas().then( (plataformas) => {
@@ -40,6 +43,19 @@ export class ArticulosComponent implements OnInit {
       { nombre: 'DVD'},
       { nombre: 'BluRay'}
     ];
+  }
+
+  scanBarCode(): void {
+    const dialogRef = this.dialog.open(ScanbarcodeComponent, {
+      width: '500px',
+      minHeight: '300px',
+      hasBackdrop: true,
+      data: { codigo: this.articulo.codigo }
+    });
+
+    dialogRef.afterClosed().toPromise().then(result => {
+      if (result) { this.articulo.codigo = result; }
+    });
   }
 
   readArticulos() {
@@ -91,6 +107,7 @@ export class ArticulosComponent implements OnInit {
       cantDispVenta: 0,
       precioVenta: 0,
       precioAlquiler: 0,
+      codigo: '',
       juego: {id: null},
       plataforma: {id: null, nombre: ''},
       formato: ''
