@@ -1,5 +1,7 @@
-<h1><i class="material-icons">swap_horiz</i> {{'rent'|translate}}</h1>
-
+<div class="sameLine">
+  <h1><i class="material-icons">swap_horiz</i> {{'rent'|translate}}</h1>
+  <button mat-button color="primary" (click)="showHelp()"><i class="material-icons">help</i> {{'help'|translate}}</button>
+</div>
 <div class="form_block">
   <mat-form-field>
     <mat-select placeholder="{{'client'|translate}}" [(ngModel)]="cliente">

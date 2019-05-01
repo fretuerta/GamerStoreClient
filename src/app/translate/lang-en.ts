@@ -34,6 +34,7 @@ export const LANG_EN_TRANS = {
     'rented': 'Rented',
     'rentPrice': 'Rent Price',
     'returnDate': 'Return Date',
+    'help': 'Help',
     'homeQuest1': 'What is GamerStore?',
     'homeAnswer1': 'GamerStore is the final project of the Training Cycle in Web Application Development.',
     'homeQuest2': 'Functionality:',
@@ -60,5 +61,11 @@ export const LANG_EN_TRANS = {
     'sale_price': 'Sale Price',
     'sale_available': 'Sale Available',
     'scannerRequiredError': 'Not Available',
-    'code': 'Code'
+    'code': 'Code',
+    'close': 'Close',
+    'plataformasHelp': 'On this screen you must register the different platforms for which the items are sold (eg Play Station, XBoX, etc.).',
+    'juegosHelp': 'In this screen the games are registered, independently of the platform for which they are made.',
+    'articulosHelp': 'List of items available for sale and rent.',
+    'clientesHelp': 'Customer list. You need to have the registered customer to be able to make a sale or rent.',
+    'alquileresHelp': 'An article can be located by clicking on the Scan button and passing the barcode through the camera. When the items are in the list, press the save button to finish.'
 };

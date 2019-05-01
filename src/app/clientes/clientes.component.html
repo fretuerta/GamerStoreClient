@@ -1,4 +1,7 @@
-<h1><i class="material-icons">people</i> {{'clients'|translate}}</h1>
+<div class="sameLine">
+  <h1><i class="material-icons">people</i> {{'clients'|translate}}</h1>
+  <button mat-button color="primary" (click)="showHelp()"><i class="material-icons">help</i> {{'help'|translate}}</button>
+</div>
 <div *ngIf="!editing">
   <div class="form_block">
     <label>{{'search'|translate}}:

@@ -48,3 +48,10 @@ mat-form-field, .fieldInLine {
 .editingImage img {
   margin: 0.5rem;
 }
+
+.sameLine {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+ }

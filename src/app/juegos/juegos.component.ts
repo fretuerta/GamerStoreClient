@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { JuegosService } from '../services/juegos.service';
 import { MatDialog } from '@angular/material';
 import { ScanbarcodeComponent } from '../modals/scanbarcode/scanbarcode.component';
+import { HelpComponent } from '../modals/help/help.component';
 
 @Component({
   selector: 'app-juegos',
@@ -110,6 +111,13 @@ export class JuegosComponent implements OnInit {
         this.updateJuegosToShow();
       });
     }
+  }
+
+  showHelp() {
+    this.dialog.open(HelpComponent, {
+      width: '50%',
+      data: {name: 'juegosHelp'}
+    });
   }
 
 }

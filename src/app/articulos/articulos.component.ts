@@ -5,6 +5,7 @@ import { ArticulosService } from '../services/articulos.service';
 import { Juego, Plataforma, Articulo } from 'src/app/models';
 import { MatDialog } from '@angular/material';
 import { ScanbarcodeComponent } from '../modals/scanbarcode/scanbarcode.component';
+import { HelpComponent } from '../modals/help/help.component';
 
 @Component({
   selector: 'app-articulos',
@@ -127,4 +128,12 @@ export class ArticulosComponent implements OnInit {
       });
     }
   }
+
+  showHelp() {
+    this.dialog.open(HelpComponent, {
+      width: '50%',
+      data: {name: 'articulosHelp'}
+    });
+  }
+
 }

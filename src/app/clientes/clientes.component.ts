@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from '../services/clientes.service';
+import { MatDialog } from '@angular/material';
+import { HelpComponent } from '../modals/help/help.component';
 
 @Component({
   selector: 'app-clientes',
@@ -26,7 +28,8 @@ export class ClientesComponent implements OnInit {
   element: any = {};
   searchText = '';
 
-  constructor( protected clientesService: ClientesService ) { }
+  constructor( protected clientesService: ClientesService,
+              public dialog: MatDialog ) { }
 
   ngOnInit() { this.readClientes(); }
 
@@ -86,6 +89,13 @@ export class ClientesComponent implements OnInit {
         this.editing = false;
       });
     }
+  }
+
+  showHelp() {
+    this.dialog.open(HelpComponent, {
+      width: '50%',
+      data: {name: 'clientesHelp'}
+    });
   }
 
 }

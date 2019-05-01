@@ -1,5 +1,7 @@
-<h1><i class="material-icons">videogame_asset</i> {{'games'|translate}}</h1>
-
+<div class="sameLine">
+  <h1><i class="material-icons">videogame_asset</i> {{'games'|translate}}</h1>
+  <button mat-button color="primary" (click)="showHelp()"><i class="material-icons">help</i> {{'help'|translate}}</button>
+</div>
 <div *ngIf="!editing" class="c1">
   <div class="form_block">
     <label>{{'search'|translate}}:

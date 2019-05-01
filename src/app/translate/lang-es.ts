@@ -34,6 +34,7 @@ export const LANG_ES_TRANS = {
     'rented': 'Alquilado',
     'rentPrice': 'Precio Alquiler',
     'returnDate': 'Fecha de Devolución',
+    'help': 'Ayuda',
     'homeQuest1': '¿Qué es GamerStore?',
     'homeAnswer1': 'GamerStore es el proyecto de fin de Ciclo Formativo en Desarrollo de Aplicaciones Web.',
     'homeQuest2': 'Funcionalidad:',
@@ -60,5 +61,12 @@ export const LANG_ES_TRANS = {
     'sale_price': 'Precio Venta',
     'sale_available': 'Disponible Venta',
     'scannerRequiredError': 'No Disponible',
-    'code': 'Código'
+    'code': 'Código',
+    'close': 'Cerrar',
+
+    'plataformasHelp': 'En esta pantalla debe registrar las diferentes plataformas para las que se venden los artículos (ej. Play Station, XBoX, etc.).',
+    'juegosHelp': 'En esta pantalla se registran los juegos, independientemente de la plataforma para los que se realizan.',
+    'articulosHelp': 'Relación de artículos disponibles para la venta y alquiler.',
+    'clientesHelp': 'Relación de clientes. Se necesita tener al cliente registrado para poder realizar una venta o alquiler.',
+    'alquileresHelp': 'Se puede localizar un artículo pulsando en el boton Scanear y pasar el código de barras por la cámara. Cuando ya estén los articulos en la lista Alquilado, pulsar el botón Guardar para finalizar.'
 };

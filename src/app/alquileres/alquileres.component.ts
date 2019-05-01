@@ -6,6 +6,7 @@ import { ClientesService } from '../services/clientes.service';
 import { AlquileresService } from '../services/alquileres.service';
 import { ScanbarcodeComponent } from '../modals/scanbarcode/scanbarcode.component';
 import { MatDialog } from '@angular/material';
+import { HelpComponent } from '../modals/help/help.component';
 
 @Component({
   selector: 'app-alquileres',
@@ -178,4 +179,12 @@ export class AlquileresComponent implements OnInit {
   redonDosDec(num: number) {
     return (Math.round(num * 100) / 100)
   }
+
+  showHelp() {
+    this.dialog.open(HelpComponent, {
+      width: '50%',
+      data: {name: 'alquileresHelp'}
+    });
+  }
+
 }

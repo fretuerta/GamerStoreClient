@@ -28,6 +28,7 @@ import { ScanbarcodeComponent } from './modals/scanbarcode/scanbarcode.component
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { FacturasComponent } from './facturas/facturas.component';
+import { HelpComponent } from './modals/help/help.component';
 
 const appRoutingProviders: any = [];
 
@@ -44,7 +45,8 @@ const appRoutingProviders: any = [];
     ScanbarcodeComponent,
     VentasComponent,
     AlquileresComponent,
-    FacturasComponent
+    FacturasComponent,
+    HelpComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -66,14 +68,14 @@ const appRoutingProviders: any = [];
       { path: 'facturas', component: FacturasComponent }
     ])
   ],
-  entryComponents: [ ScanbarcodeComponent ],
+  entryComponents: [ ScanbarcodeComponent, HelpComponent ],
   providers: [
     appRoutingProviders,
     { provide: LOCALE_ID, useValue: 'es'},
     TranslateService,
     TRANSLATION_PROVIDERS,
     TranslatePipe,
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false} }
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true} }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlataformasService } from '../services/plataformas.service';
+import { MatDialog } from '@angular/material';
+import { HelpComponent } from '../modals/help/help.component';
 
 @Component({
   selector: 'app-plataformas',
@@ -15,7 +17,8 @@ export class PlataformasComponent implements OnInit {
   element: any = {};
   searchText = '';
 
-  constructor( protected plataformasService: PlataformasService) { }
+  constructor( protected plataformasService: PlataformasService,
+      public dialog: MatDialog) { }
 
   ngOnInit() { this.readPlataformas(); }
 
@@ -91,5 +94,13 @@ export class PlataformasComponent implements OnInit {
         this.editing = false;
       });
     }
+  }
+
+  showHelp() {
+    this.dialog.open(HelpComponent, {
+      width: '50%',
+      data: {name: 'plataformasHelp'}
+    });
+
   }
 }
