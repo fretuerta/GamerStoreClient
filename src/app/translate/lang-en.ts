@@ -28,6 +28,8 @@ export const LANG_EN_TRANS = {
     'game': 'Game',
     'games': 'Games',
     'sale': 'Sale',
+    'sold': 'Sold',
+    'saleDate': 'Sale Date',
     'salePrice': 'Sale Price',
     'rent': 'Rent',
     'rentDate': 'Rent Date',
@@ -67,5 +69,6 @@ export const LANG_EN_TRANS = {
     'juegosHelp': 'In this screen the games are registered, independently of the platform for which they are made.',
     'articulosHelp': 'List of items available for sale and rent.',
     'clientesHelp': 'Customer list. You need to have the registered customer to be able to make a sale or rent.',
-    'alquileresHelp': 'An article can be located by clicking on the Scan button and passing the barcode through the camera. When the items are in the list, press the save button to finish.'
+    'alquileresHelp': 'An article can be located by clicking on the Scan button and passing the barcode through the camera. When the items are in the list, press the save button to finish.',
+    'ventasHelp': 'An article can be located by clicking on the Scan button and passing the barcode through the camera. When the items are in the list, press the save button to finish.'
 };

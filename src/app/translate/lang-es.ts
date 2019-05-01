@@ -27,6 +27,8 @@ export const LANG_ES_TRANS = {
     'game': 'Juego',
     'games': 'Juegos',
     'sale': 'Venta',
+    'sold': 'Vendido',
+    'saleDate': 'Fecha de Venta',
     'salePrice': 'Precio Venta',
     'salesCheck': 'Facturas',
     'rent': 'Alquiler',
@@ -68,5 +70,6 @@ export const LANG_ES_TRANS = {
     'juegosHelp': 'En esta pantalla se registran los juegos, independientemente de la plataforma para los que se realizan.',
     'articulosHelp': 'Relación de artículos disponibles para la venta y alquiler.',
     'clientesHelp': 'Relación de clientes. Se necesita tener al cliente registrado para poder realizar una venta o alquiler.',
-    'alquileresHelp': 'Se puede localizar un artículo pulsando en el boton Scanear y pasar el código de barras por la cámara. Cuando ya estén los articulos en la lista Alquilado, pulsar el botón Guardar para finalizar.'
+    'alquileresHelp': 'Se puede localizar un artículo pulsando en el boton Scanear y pasar el código de barras por la cámara. Cuando ya estén los articulos en la lista Alquilado, pulsar el botón Guardar para finalizar.',
+    'ventasHelp': 'Se puede localizar un artículo pulsando en el boton Scanear y pasar el código de barras por la cámara. Cuando ya estén los articulos en la lista Vendido, pulsar el botón Guardar para finalizar.'
 };

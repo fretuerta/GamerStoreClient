@@ -1,3 +1,77 @@
-<p>
-  ventas works!
-</p>
+<div class="sameLine">
+  <h1><i class="material-icons">euro_symbol</i> {{'sale'|translate}}</h1>
+  <button mat-button color="primary" (click)="showHelp()"><i class="material-icons">help</i> {{'help'|translate}}</button>
+</div>
+<div class="form_block">
+  <mat-form-field>
+    <mat-select placeholder="{{'client'|translate}}" [(ngModel)]="cliente">
+      <mat-option *ngFor="let element of clientes" [value]="element">
+          {{element.apellidos}}, {{element.nombre}}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="showClientError">{{'clientRequiredError'|translate}}</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="{{'saleDate'|translate}}" [(ngModel)]="venta.fechaVenta">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <button mat-stroked-button color="primary" (click)="scanBarCode()"><i class="material-icons">view_array</i> Scanear</button>
+  <button mat-stroked-button (click)="saveVenta()"><i class="material-icons">save</i> {{'save'|translate}} </button>
+</div>
+<mat-hint *ngIf="showScannerError">{{'scannerRequiredError'|translate}}</mat-hint>
+<mat-hint *ngIf="showEmptyListError">{{'emptyListError'|translate}}</mat-hint>
+<div class="form_block">
+  <label>{{'search'|translate}}:
+    <input type="text" [(ngModel)]="searchText" (keyup)="updateArticulosToShow()">
+  </label>
+  <i class="material-icons clearButton" (click)="clearSearchText()">remove_circle</i>
+  <span *ngIf="articulos && articulosToShow">
+    {{'found'|translate}} {{articulosToShow.length}} {{'of'|translate}} {{articulos.length}}
+  </span>
+</div>
+<div class="flex_box">
+  <div cdkDropListGroup>
+    <div class="drop-list-container">
+      <h2>{{'items'|translate}}</h2>
+      <div cdkDropList [cdkDropListData]="articulosToShow" class="drop-list" (cdkDropListDropped)="drop($event)">
+        <div class="drop-list-box" *ngFor="let articulo of articulosToShow" cdkDrag (dblclick)="addToVendidos(articulo)">
+          <div *ngIf="articulo.juego.caratula" class="coverButton"><img src="{{articulo.juego.caratula}}"></div>
+          <div class="allBlock">
+            <div>{{articulo.codigo}}</div>
+            <div>{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
+            <div><label>{{'available'|translate}}: {{articulo.cantDispVenta}}</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="drop-list-container">
+      <div class="sameLine">
+          <h2>{{'sold'|translate}}</h2>
+          <h2>Total: {{sumaTotal()}}</h2>
+      </div>
+      <div cdkDropList [cdkDropListData]="articulosVendidos" class="drop-list" (cdkDropListDropped)="drop($event)">
+        <div class="drop-list-box" *ngFor="let articulo of articulosVendidos" cdkDrag (dblclick)="removeFromVendidos(articulo)">
+          <div *ngIf="articulo.juego.caratula" class="coverButton"><img src="{{articulo.juego.caratula}}"></div>
+          <div class="allBlock">
+            <div>{{articulo.codigo}}</div>
+            <div class="sameLine">
+                <div>{{articulo.juego.nombre}} - {{articulo.plataforma.nombre}}</div>
+                <div><label> {{'price'|translate}}: {{articulo.precioVenta}}</label></div>
+            </div>
+            <div class="sameLine">
+              <div>
+                <label> {{'available'|translate}}: {{articulo.cantDispVenta}}</label>
+                <label> {{'quantity'|translate}}: </label>
+                  <input type="number" min="1" max="{{articulo.cantDispVenta}}" [(ngModel)]="articulo.cantidad" (dblclick)="$event.stopPropagation()">
+              </div>
+              <div>
+                <label> Total: {{redonDosDec(articulo.precioVenta * articulo.cantidad)}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
