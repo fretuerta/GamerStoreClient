@@ -6,7 +6,9 @@ export const LANG_EN_TRANS = {
     'chooseImage': 'Choose Image',
     'city': 'City',
     'configuration': 'Configuration',
+    'download': 'Download',
     'salesCheck': 'Sales Check',
+    'salesCheckDate': 'Sales Check Date',
     'sellDate': 'Sell Date',
     'state': 'State',
     'language': 'Language',
@@ -46,6 +48,7 @@ export const LANG_EN_TRANS = {
     'developedBy': 'Developed by',
     'items': 'Items',
     'name': 'Name',
+    'number': 'Number',
     'save': 'Save',
     'cancel': 'Cancel',
     'erase': 'Erase',
@@ -65,10 +68,13 @@ export const LANG_EN_TRANS = {
     'scannerRequiredError': 'Not Available',
     'code': 'Code',
     'close': 'Close',
+    'total': 'Total',
+
     'plataformasHelp': 'On this screen you must register the different platforms for which the items are sold (eg Play Station, XBoX, etc.).',
     'juegosHelp': 'In this screen the games are registered, independently of the platform for which they are made.',
     'articulosHelp': 'List of items available for sale and rent.',
     'clientesHelp': 'Customer list. You need to have the registered customer to be able to make a sale or rent.',
     'alquileresHelp': 'An article can be located by clicking on the Scan button and passing the barcode through the camera. When the items are in the list, press the save button to finish.',
-    'ventasHelp': 'An article can be located by clicking on the Scan button and passing the barcode through the camera. When the items are in the list, press the save button to finish.'
+    'ventasHelp': 'An article can be located by clicking on the Scan button and passing the barcode through the camera. When the items are in the list, press the save button to finish.',
+    'facturasHelp': 'Billing summary by customer.'
 };

@@ -47,6 +47,7 @@ export interface Alquiler {
   cliente?: Cliente;
   fechaInicio?: Date;
   fechaFin?: Date;
+  total?: number;
   alquilerDetalles?: AlquilerDetalle[];
 }
 
@@ -61,5 +62,21 @@ export interface Venta {
   id?: number;
   cliente?: Cliente;
   fechaVenta?: Date;
+  total?: number;
   ventaDetalles?: VentaDetalle[];
+}
+
+export interface FacturaDetalle {
+  id?: number;
+  articulo?: Articulo;
+  cantidad?: number;
+  precio?: number;
+}
+
+export interface Factura {
+  numFactura?: string;
+  cliente?: Cliente;
+  fechaFactura?: Date;
+  total?: number;
+  facturaDetalles?: FacturaDetalle[];
 }

@@ -1,3 +1,56 @@
-<p>
-  facturas works!
-</p>
+<div class="sameLine">
+  <h1><i class="material-icons">library_books</i> {{'salesCheck'|translate}}</h1>
+  <button mat-button color="primary" (click)="showHelp()"><i class="material-icons">help</i> {{'help'|translate}}</button>
+</div>
+<div class="form_block">
+  <mat-form-field>
+    <mat-select placeholder="{{'client'|translate}}" [(ngModel)]="cliente" (selectionChange)="pedirFacturas()">
+      <mat-option *ngFor="let element of clientes" [value]="element">
+          {{element.apellidos}}, {{element.nombre}}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="showClientError">{{'clientRequiredError'|translate}}</mat-hint>
+  </mat-form-field>
+<div class="form_block" *ngIf="facturas">
+  <label>{{'search'|translate}}:
+    <input type="text" [(ngModel)]="searchText" (keyup)="updateFacturasToShow()">
+  </label>
+  <i class="material-icons clearButton" (click)="clearSearchText()">remove_circle</i>
+  <span>
+    {{'found'|translate}} {{facturasToShow.length}} {{'of'|translate}} {{facturas.length}}
+  </span>
+</div>
+<div class="flex_box" *ngIf="facturasToShow.length">
+  <div class="c1 table_box mat-elevation-z8">
+    <table mat-table [dataSource]="facturasToShow" class="mat-elevation-z8">
+      <ng-container matColumnDef="numero">
+        <th mat-header-cell *matHeaderCellDef> {{'number'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="downloadFactura(element.id)"> {{element.numFactura}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef> {{'salesCheckDate'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="downloadFactura(element.id)"> {{element.fechaFactura | date:'dd/MM/yyyy'}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> {{'total'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="downloadFactura(element.id)"> {{element.total}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>
+          PDF
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="downloadFactura(element.id)"> {{'download'|translate}} </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

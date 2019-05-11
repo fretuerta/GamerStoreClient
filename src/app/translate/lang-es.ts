@@ -6,6 +6,7 @@ export const LANG_ES_TRANS = {
     'chooseImage': 'Elegir Imagen',
     'city': 'Población',
     'configuration': 'Configuración',
+    'download': 'Descargar',
     'sellDate': 'Fecha de Venta',
     'state': 'Provincia',
     'language': 'Idioma',
@@ -31,6 +32,7 @@ export const LANG_ES_TRANS = {
     'saleDate': 'Fecha de Venta',
     'salePrice': 'Precio Venta',
     'salesCheck': 'Facturas',
+    'salesCheckDate': 'Fecha Factura',
     'rent': 'Alquiler',
     'rentDate': 'Fecha de Alquiler',
     'rented': 'Alquilado',
@@ -46,6 +48,7 @@ export const LANG_ES_TRANS = {
     'developedBy': 'Desarrollado por',
     'items': 'Artículos',
     'name': 'Nombre',
+    'number': 'Número',
     'save': 'Guardar',
     'cancel': 'Cancelar',
     'erase': 'Borrar',
@@ -65,11 +68,13 @@ export const LANG_ES_TRANS = {
     'scannerRequiredError': 'No Disponible',
     'code': 'Código',
     'close': 'Cerrar',
+    'total': 'Total',
 
     'plataformasHelp': 'En esta pantalla debe registrar las diferentes plataformas para las que se venden los artículos (ej. Play Station, XBoX, etc.).',
     'juegosHelp': 'En esta pantalla se registran los juegos, independientemente de la plataforma para los que se realizan.',
     'articulosHelp': 'Relación de artículos disponibles para la venta y alquiler.',
     'clientesHelp': 'Relación de clientes. Se necesita tener al cliente registrado para poder realizar una venta o alquiler.',
     'alquileresHelp': 'Se puede localizar un artículo pulsando en el boton Scanear y pasar el código de barras por la cámara. Cuando ya estén los articulos en la lista Alquilado, pulsar el botón Guardar para finalizar.',
-    'ventasHelp': 'Se puede localizar un artículo pulsando en el boton Scanear y pasar el código de barras por la cámara. Cuando ya estén los articulos en la lista Vendido, pulsar el botón Guardar para finalizar.'
+    'ventasHelp': 'Se puede localizar un artículo pulsando en el boton Scanear y pasar el código de barras por la cámara. Cuando ya estén los articulos en la lista Vendido, pulsar el botón Guardar para finalizar.',
+    'facturasHelp': 'Resumen de facturación por cliente.'
 };

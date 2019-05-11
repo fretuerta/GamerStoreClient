@@ -141,12 +141,13 @@ export class AlquileresComponent implements OnInit {
     this.showClientError = !this.cliente;
     if (this.cliente) {
       this.alquiler.cliente = this.cliente;
+      this.alquiler.total = this.sumaTotal();
       this.alquiler.alquilerDetalles = [];
       this.articulosAlquilados.forEach((element)=>{
         let alquilerDetalle: AlquilerDetalle = {
           articulo: element,
-          cantidad: 5,
-          precio: 3.23
+          cantidad: element.cantidad,
+          precio: element.precioAlquiler
         }
         this.alquiler.alquilerDetalles.push(alquilerDetalle);
       })

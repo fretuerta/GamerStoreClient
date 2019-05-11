@@ -141,12 +141,13 @@ export class VentasComponent implements OnInit {
     this.showClientError = !this.cliente;
     if (this.cliente) {
       this.venta.cliente = this.cliente;
+      this.venta.total = this.sumaTotal();
       this.venta.ventaDetalles = [];
       this.articulosVendidos.forEach((element)=>{
         let ventaDetalle: VentaDetalle = {
           articulo: element,
-          cantidad: 5,
-          precio: 3.23
+          cantidad: element.cantidad,
+          precio: element.precioVenta
         }
         this.venta.ventaDetalles.push(ventaDetalle);
       })
