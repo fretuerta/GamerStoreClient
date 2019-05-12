@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
+    this.authService.autoAuthUser();
   }
 
   updateLanguage() {
