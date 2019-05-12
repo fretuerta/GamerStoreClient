@@ -1,0 +1,16 @@
+
+mat-form-field {
+    width: 100%;
+  }
+  
+  mat-card {
+    display: flex;
+    width: 75%;
+    justify-content: center;
+    margin: auto;
+  }
+  
+  mat-spinner {
+    margin: auto;
+  }
+  

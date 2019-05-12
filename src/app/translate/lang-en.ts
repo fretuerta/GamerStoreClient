@@ -69,6 +69,12 @@ export const LANG_EN_TRANS = {
     'code': 'Code',
     'close': 'Close',
     'total': 'Total',
+    'login': 'Login',
+    'logout': 'Logout',
+    'signup': 'Sign Up',
+    'emailExist': 'This E-mail already exists.',
+    'emailError': 'Wrong email.',
+    'passwError': 'Wrong password.',
 
     'plataformasHelp': 'On this screen you must register the different platforms for which the items are sold (eg Play Station, XBoX, etc.).',
     'juegosHelp': 'In this screen the games are registered, independently of the platform for which they are made.',

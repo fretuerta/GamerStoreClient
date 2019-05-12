@@ -69,6 +69,12 @@ export const LANG_ES_TRANS = {
     'code': 'Código',
     'close': 'Cerrar',
     'total': 'Total',
+    'login': 'Iniciar Sesión',
+    'logout': 'Cerrar Sesión',
+    'signup': 'Registrarse',
+    'emailExist': 'El email ya existe.',
+    'emailError': 'Email incorrecto.',
+    'passwError': 'Password incorrecto.',
 
     'plataformasHelp': 'En esta pantalla debe registrar las diferentes plataformas para las que se venden los artículos (ej. Play Station, XBoX, etc.).',
     'juegosHelp': 'En esta pantalla se registran los juegos, independientemente de la plataforma para los que se realizan.',

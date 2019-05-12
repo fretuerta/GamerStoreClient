@@ -29,6 +29,9 @@ import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { FacturasComponent } from './facturas/facturas.component';
 import { HelpComponent } from './modals/help/help.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 const appRoutingProviders: any = [];
 
@@ -46,7 +49,8 @@ const appRoutingProviders: any = [];
     VentasComponent,
     AlquileresComponent,
     FacturasComponent,
-    HelpComponent
+    HelpComponent,
+    SignupComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -59,6 +63,7 @@ const appRoutingProviders: any = [];
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
       { path: 'plataformas', component: PlataformasComponent },
       { path: 'juegos', component: JuegosComponent },
       { path: 'articulos', component: ArticulosComponent },
@@ -75,7 +80,8 @@ const appRoutingProviders: any = [];
     TranslateService,
     TRANSLATION_PROVIDERS,
     TranslatePipe,
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true} }
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true} },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

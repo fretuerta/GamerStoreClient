@@ -1,3 +1,8 @@
+export interface AuthData {
+  email?: string;
+  password?: string;
+}
+
 export interface Cliente {
   id?: number;
   nombre: string;
