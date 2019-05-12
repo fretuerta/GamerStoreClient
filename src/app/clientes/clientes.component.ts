@@ -10,7 +10,6 @@ import { HelpComponent } from '../modals/help/help.component';
 })
 export class ClientesComponent implements OnInit {
 
-
   clientes: any[];
   clientesToShow: any[];
   displayedColumns: string[] = [
@@ -27,6 +26,7 @@ export class ClientesComponent implements OnInit {
   editing = false;
   element: any = {};
   searchText = '';
+  isLoading = false;
 
   constructor( protected clientesService: ClientesService,
               public dialog: MatDialog ) { }
@@ -48,9 +48,11 @@ export class ClientesComponent implements OnInit {
   }
 
   readClientes() {
+    this.isLoading = true;
     this.clientesService.readClientes().then( clientes => {
       this.clientes = clientes.json();
       this.updateClientesToShow();
+      this.isLoading = false;
     });
   }
 
@@ -76,17 +78,20 @@ export class ClientesComponent implements OnInit {
   }
 
   saveElement() {
+    this.isLoading = true;
     if (this.element.id) {
       this.clientesService.updateCliente(this.element).then( (clientes) => {
         this.clientes = clientes.json();
         this.updateClientesToShow();
         this.editing = false;
+        this.isLoading = false;
       });
     } else {
       this.clientesService.addCliente(this.element).then( (clientes) => {
         this.clientes = clientes.json();
         this.updateClientesToShow();
         this.editing = false;
+        this.isLoading = false;
       });
     }
   }

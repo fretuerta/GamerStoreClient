@@ -32,6 +32,7 @@ export class VentasComponent implements OnInit {
   showScannerError = false;
   showClientError = false;
   showEmptyListError = false;
+  isLoading = false;
 
   constructor(protected articulosService: ArticulosService,
               protected clientesService: ClientesService,
@@ -40,9 +41,11 @@ export class VentasComponent implements OnInit {
 
   ngOnInit() {
     this.clearVenta();
+    this.isLoading = true;
     this.articulosService.readArticulos().then( (articulos) => {
       this.articulos = articulos.json();
       this.updateArticulosToShow();
+      this.isLoading = false;
     });
     this.clientesService.readClientes().then( (clientes) => {
       this.clientes = clientes.json();
@@ -151,12 +154,12 @@ export class VentasComponent implements OnInit {
         }
         this.venta.ventaDetalles.push(ventaDetalle);
       })
+      this.isLoading = true;
       this.ventasService.addVenta(this.venta).then((result)=>{
         this.articulosVendidos = [];
         this.updateArticulosToShow();
+        this.isLoading = false;
       });
-    } else {
-
     }
   }
 

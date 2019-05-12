@@ -11,7 +11,9 @@
     </mat-select>
     <mat-hint *ngIf="showClientError">{{'clientRequiredError'|translate}}</mat-hint>
   </mat-form-field>
-<div class="form_block" *ngIf="facturas">
+</div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="form_block" *ngIf="facturas && !isLoading">
   <label>{{'search'|translate}}:
     <input type="text" [(ngModel)]="searchText" (keyup)="updateFacturasToShow()">
   </label>
@@ -20,7 +22,7 @@
     {{'found'|translate}} {{facturasToShow.length}} {{'of'|translate}} {{facturas.length}}
   </span>
 </div>
-<div class="flex_box" *ngIf="facturasToShow.length">
+<div class="flex_box" *ngIf="facturasToShow.length && !isLoading">
   <div class="c1 table_box mat-elevation-z8">
     <table mat-table [dataSource]="facturasToShow" class="mat-elevation-z8">
       <ng-container matColumnDef="numero">

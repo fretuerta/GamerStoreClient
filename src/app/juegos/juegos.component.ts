@@ -21,6 +21,7 @@ export class JuegosComponent implements OnInit {
   editing = false;
   element: any = {};
   searchText = '';
+  isLoading = false;
 
   constructor( protected juegosService: JuegosService,
                public dialog: MatDialog) { }
@@ -55,9 +56,11 @@ export class JuegosComponent implements OnInit {
   }
 
   readJuegos() {
+    this.isLoading = true;
     this.juegosService.readJuegos().then( (juegos) => {
       this.juegos = juegos.json();
       this.updateJuegosToShow();
+      this.isLoading = false;
     });
   }
 
@@ -98,17 +101,20 @@ export class JuegosComponent implements OnInit {
   }
 
   saveElement() {
+    this.isLoading = true;
     if (this.element.id) {
       this.juegosService.updateJuego(this.element).then( (juegos) => {
         this.editing = false;
         this.juegos = juegos.json();
         this.updateJuegosToShow();
+        this.isLoading = false;
       });
     } else {
       this.juegosService.addJuego(this.element).then( (juegos) => {
         this.editing = false;
         this.juegos = juegos.json();
         this.updateJuegosToShow();
+        this.isLoading = false;
       });
     }
   }

@@ -14,8 +14,9 @@
     </div>
     <div class="c3">
       <button mat-button *ngIf="!userIsAuthenticated" [routerLink]="['/login']">{{'login'|translate}}</button>
-      <button mat-button *ngIf="userIsAuthenticated" (click)="logout()" >{{'logout'|translate}}</button>
       <button mat-button *ngIf="!userIsAuthenticated" [routerLink]="['/signup']">{{'signup'|translate}}</button>
+      <button mat-button *ngIf="userIsAuthenticated" (click)="logout()" >{{'logout'|translate}}</button>
+      <div class="userName">{{userName}}</div>
     </div>
   </div>
   <div *ngIf="userIsAuthenticated">

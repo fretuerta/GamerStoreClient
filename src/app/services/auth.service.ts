@@ -13,12 +13,13 @@ export class AuthService {
 
   private token: string;
   getToken() { return this.token }
-  setToken(token: string) {
+  setToken(token: string, authUserName: string) {
     this.token = token;
-    this.saveAuthData(token, new Date( new Date().getTime() + (1000 * 60 * 60 * 10) ) )
-    this.authStatusListener.next(true);
+    this.saveAuthData(token, new Date( new Date().getTime() + (1000 * 60 * 60 * 10) ), authUserName )
+    this.authStatusListener.next({authenticated: true, email: authUserName});
   }
-  private authStatusListener = new Subject<boolean>();
+  private authStatusListener = new Subject<AuthData>();
+  public userName = "";
   
   constructor(protected http: Http) { }
 
@@ -40,31 +41,35 @@ export class AuthService {
     const authInformation = this.getAuthData();
     if (authInformation && authInformation.expirationDate > new Date()) {
       this.token = authInformation.token;
-      this.authStatusListener.next(true);
+      this.userName = authInformation.authUserName;
+      this.authStatusListener.next({authenticated: true, email: this.userName});
     }
   }
 
   logout() {
     this.token = null;
     this.clearAuthData();
-    this.authStatusListener.next(false);
+    this.authStatusListener.next({authenticated: false, email: ''});
   }
 
-  private saveAuthData(token: string, expirationDate: Date) {
+  private saveAuthData(token: string, expirationDate: Date, authUserName: string) {
     console.log('dia: ', expirationDate);
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
+    localStorage.setItem('authUserName', authUserName);
   }
 
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
+    localStorage.removeItem('authUserName');
   }
 
   private getAuthData() {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
-    if (!token || !expirationDate) { return; }
-    return { token: token, expirationDate: new Date(expirationDate) }
+    const authUserName = localStorage.getItem('authUserName');
+    if (!token || !expirationDate || !authUserName) { return; }
+    return { token: token, expirationDate: new Date(expirationDate), authUserName: authUserName }
   }
 }

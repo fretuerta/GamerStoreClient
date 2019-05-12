@@ -22,7 +22,7 @@ export class LoginComponent {
     .then((result) => {
       let tokenText = result.text();
       if (tokenText != null && tokenText != '' ) {
-        this.authService.setToken(tokenText);
+        this.authService.setToken(tokenText, form.value.email);
         this.router.navigateByUrl('');
       }
     })

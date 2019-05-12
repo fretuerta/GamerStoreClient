@@ -1,6 +1,7 @@
 export interface AuthData {
   email?: string;
   password?: string;
+  authenticated?: boolean;
 }
 
 export interface Cliente {

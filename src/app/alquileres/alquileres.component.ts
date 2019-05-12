@@ -32,6 +32,7 @@ export class AlquileresComponent implements OnInit {
   showScannerError = false;
   showClientError = false;
   showEmptyListError = false;
+  isLoading = false;
 
   constructor(protected articulosService: ArticulosService,
               protected clientesService: ClientesService,
@@ -40,9 +41,11 @@ export class AlquileresComponent implements OnInit {
 
   ngOnInit() {
     this.clearAlquiler();
+    this.isLoading = true;
     this.articulosService.readArticulos().then( (articulos) => {
       this.articulos = articulos.json();
       this.updateArticulosToShow();
+      this.isLoading = false;
     });
     this.clientesService.readClientes().then( (clientes) => {
       this.clientes = clientes.json();
@@ -151,9 +154,11 @@ export class AlquileresComponent implements OnInit {
         }
         this.alquiler.alquilerDetalles.push(alquilerDetalle);
       })
+      this.isLoading = true;
       this.alquileresService.addAlquiler(this.alquiler).then((result)=>{
         this.articulosAlquilados = [];
         this.updateArticulosToShow();
+        this.isLoading = false;
       });
     } else {
 

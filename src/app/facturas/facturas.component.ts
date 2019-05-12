@@ -18,6 +18,7 @@ export class FacturasComponent implements OnInit {
   cliente: Cliente;
   clientes: Cliente[];
   displayedColumns: string[] = ['numero', 'fecha', 'total', 'action'];
+  isLoading = false;
 
   constructor( protected clientesService: ClientesService,
               protected facturasService: FacturasService,
@@ -30,9 +31,11 @@ export class FacturasComponent implements OnInit {
   }
 
   pedirFacturas() {
+    this.isLoading = true;
     this.facturasService.readFacturas(this.cliente.id).then( (facturas) => {
       this.facturas = facturas.json();
       this.updateFacturasToShow();
+      this.isLoading = false;
     });
   }
 

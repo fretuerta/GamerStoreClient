@@ -26,7 +26,8 @@
 </div>
 <mat-hint *ngIf="showScannerError">{{'scannerRequiredError'|translate}}</mat-hint>
 <mat-hint *ngIf="showEmptyListError">{{'emptyListError'|translate}}</mat-hint>
-<div class="form_block">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="form_block" *ngIf="!isLoading">
   <label>{{'search'|translate}}:
     <input type="text" [(ngModel)]="searchText" (keyup)="updateArticulosToShow()">
   </label>
@@ -35,7 +36,7 @@
     {{'found'|translate}} {{articulosToShow.length}} {{'of'|translate}} {{articulos.length}}
   </span>
 </div>
-<div class="flex_box">
+<div class="flex_box" *ngIf="!isLoading">
   <div cdkDropListGroup>
     <div class="drop-list-container">
       <h2>{{'items'|translate}}</h2>

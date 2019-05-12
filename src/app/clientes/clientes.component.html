@@ -2,7 +2,8 @@
   <h1><i class="material-icons">people</i> {{'clients'|translate}}</h1>
   <button mat-button color="primary" (click)="showHelp()"><i class="material-icons">help</i> {{'help'|translate}}</button>
 </div>
-<div *ngIf="!editing">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!editing && !isLoading">
   <div class="form_block">
     <label>{{'search'|translate}}:
       <input type="text" [(ngModel)]="searchText" (keyup)="updateClientesToShow()">
@@ -77,7 +78,7 @@
     </div>
   </div>
 </div>
-<div *ngIf="editing">
+<div *ngIf="editing && !isLoading">
   <div class="form_block">
     <mat-form-field>
       <input matInput placeholder="{{'name'|translate}}" [(ngModel)]="element.nombre">

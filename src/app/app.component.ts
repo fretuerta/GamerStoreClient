@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
            { value: 'en' }];
 
   userIsAuthenticated = false;
+  userName = "";
   private authListenerSubs: Subscription;
   
   constructor(private translateService: TranslateService,
@@ -28,8 +29,9 @@ export class AppComponent implements OnInit {
     this.currentLanguage = 'es';
     this.updateLanguage();
     this.authListenerSubs = this.authService.getAuthStatusListener()
-      .subscribe(isAuthenticated => {
-        this.userIsAuthenticated = isAuthenticated;
+      .subscribe( (isAuthenticated) => {
+        this.userIsAuthenticated = isAuthenticated.authenticated;
+        this.userName = isAuthenticated.email;
       });
     this.authService.autoAuthUser();
   }

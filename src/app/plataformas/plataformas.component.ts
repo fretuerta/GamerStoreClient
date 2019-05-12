@@ -16,6 +16,7 @@ export class PlataformasComponent implements OnInit {
   editing = false;
   element: any = {};
   searchText = '';
+  isLoading = false;
 
   constructor( protected plataformasService: PlataformasService,
       public dialog: MatDialog) { }
@@ -37,6 +38,7 @@ export class PlataformasComponent implements OnInit {
   }
 
   readPlataformas() {
+    this.isLoading = true;
     this.plataformasService.readPlataformas().then(plataformas => {
       this.plataformas = plataformas.json().sort((n1, n2) => {
         if (n1.nombre > n2.nombre) { return 1; }
@@ -44,6 +46,7 @@ export class PlataformasComponent implements OnInit {
         return 0;
       });
       this.updatePlataformasToShow();
+      this.isLoading = false;
     });
   }
 
@@ -73,6 +76,7 @@ export class PlataformasComponent implements OnInit {
   }
 
   saveElement() {
+    this.isLoading = true;
     if (this.element.id) {
       this.plataformasService.updatePlataforma(this.element).then(plataformas => {
         this.plataformas = plataformas.json().sort((n1, n2) => {
@@ -82,6 +86,7 @@ export class PlataformasComponent implements OnInit {
         });
         this.updatePlataformasToShow();
         this.editing = false;
+        this.isLoading = false;
       });
     } else {
       this.plataformasService.addPlataforma(this.element).then(plataformas => {
@@ -92,6 +97,7 @@ export class PlataformasComponent implements OnInit {
         });
         this.updatePlataformasToShow();
         this.editing = false;
+        this.isLoading = false;
       });
     }
   }

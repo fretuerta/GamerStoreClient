@@ -8,3 +8,8 @@
     text-align: center;
     margin: 1rem;
 }
+
+.userName {
+    font-size: 0.8rem;
+    color: green;
+}

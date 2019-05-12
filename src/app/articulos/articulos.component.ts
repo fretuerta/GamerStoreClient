@@ -24,6 +24,7 @@ export class ArticulosComponent implements OnInit {
   articulo: Articulo;
   searchText = '';
   formatos: any[];
+  isLoading = false;
 
   constructor(protected articulosService: ArticulosService,
               protected plataformasService: PlataformasService,
@@ -60,9 +61,11 @@ export class ArticulosComponent implements OnInit {
   }
 
   readArticulos() {
+    this.isLoading = true;
     this.articulosService.readArticulos().then(articulos => {
       this.articulos = articulos.json();
       this.updateArticulosToShow();
+      this.isLoading = false;
     });
   }
 
@@ -116,15 +119,18 @@ export class ArticulosComponent implements OnInit {
   }
 
   saveElement() {
+    this.isLoading = true;
     if (this.articulo.id) {
       this.articulosService.updateArticulo(this.articulo).then( () => {
         this.readArticulos();
         this.editing = false;
+        this.isLoading = false;
       });
     } else {
       this.articulosService.addArticulo(this.articulo).then( () => {
         this.readArticulos();
         this.editing = false;
+        this.isLoading = false;
       });
     }
   }
