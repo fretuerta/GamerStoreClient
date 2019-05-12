@@ -32,6 +32,7 @@ import { HelpComponent } from './modals/help/help.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { AuthGuard } from './auth/auth.guard';
 
 const appRoutingProviders: any = [];
 
@@ -64,13 +65,13 @@ const appRoutingProviders: any = [];
       { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
-      { path: 'plataformas', component: PlataformasComponent },
-      { path: 'juegos', component: JuegosComponent },
-      { path: 'articulos', component: ArticulosComponent },
-      { path: 'clientes', component: ClientesComponent },
-      { path: 'ventas', component: VentasComponent },
-      { path: 'alquileres', component: AlquileresComponent },
-      { path: 'facturas', component: FacturasComponent }
+      { path: 'plataformas', component: PlataformasComponent, canActivate: [AuthGuard] },
+      { path: 'juegos', component: JuegosComponent, canActivate: [AuthGuard] },
+      { path: 'articulos', component: ArticulosComponent, canActivate: [AuthGuard] },
+      { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard] },
+      { path: 'ventas', component: VentasComponent, canActivate: [AuthGuard] },
+      { path: 'alquileres', component: AlquileresComponent, canActivate: [AuthGuard] },
+      { path: 'facturas', component: FacturasComponent, canActivate: [AuthGuard] }
     ])
   ],
   entryComponents: [ ScanbarcodeComponent, HelpComponent ],
@@ -80,6 +81,7 @@ const appRoutingProviders: any = [];
     TranslateService,
     TRANSLATION_PROVIDERS,
     TranslatePipe,
+    AuthGuard,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true} },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

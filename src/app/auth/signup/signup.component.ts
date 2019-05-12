@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
+  isLoading = false;
   emailExist: boolean = false;
 
   constructor(protected authService: AuthService,
@@ -20,11 +21,13 @@ export class SignupComponent implements OnInit {
 
   onSignup(form: NgForm) {
     if (form.invalid) { return; }
+    this.isLoading = true;
     this.authService.createUser(form.value.email, form.value.password)
     .then((result) => {
       this.router.navigateByUrl('login')
     })
     .catch((err) => {
+      this.isLoading = false;
       if (err.status == 302) {
         this.emailExist = true;
         setTimeout(()=>{ this.emailExist = false; }, 2000)

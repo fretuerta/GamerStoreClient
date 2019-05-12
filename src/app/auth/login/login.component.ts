@@ -17,6 +17,7 @@ export class LoginComponent {
     
   onLogin(form: NgForm) {
     if (form.invalid) { return; }
+    this.isLoading = true;
     this.authService.login(form.value.email, form.value.password)
     .then((result) => {
       let tokenText = result.text();
@@ -26,6 +27,7 @@ export class LoginComponent {
       }
     })
     .catch((err) => {
+      this.isLoading = false;
       if (err.status == 404) {
         this.emailError = true;
         setTimeout(()=>{ this.emailError = false; }, 2000)

@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   logout() {
-    this.token = "";
+    this.token = null;
     this.authStatusListener.next(false);
   }
 }
