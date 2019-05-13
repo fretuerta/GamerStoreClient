@@ -28,19 +28,19 @@
       <ng-container matColumnDef="numero">
         <th mat-header-cell *matHeaderCellDef> {{'number'|translate}} </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="downloadFactura(element.id)"> {{element.numFactura}} </button>
+          <button mat-button (click)="downloadFactura(element.numFactura)"> {{element.numFactura}} </button>
         </td>
       </ng-container>
       <ng-container matColumnDef="fecha">
         <th mat-header-cell *matHeaderCellDef> {{'salesCheckDate'|translate}} </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="downloadFactura(element.id)"> {{element.fechaFactura | date:'dd/MM/yyyy'}} </button>
+          <button mat-button (click)="downloadFactura(element.numFactura)"> {{element.fechaFactura | date:'dd/MM/yyyy'}} </button>
         </td>
       </ng-container>
       <ng-container matColumnDef="total">
         <th mat-header-cell *matHeaderCellDef> {{'total'|translate}} </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="downloadFactura(element.id)"> {{element.total}} </button>
+          <button mat-button (click)="downloadFactura(element.numFactura)"> {{element.total}} </button>
         </td>
       </ng-container>
       <ng-container matColumnDef="action">
@@ -48,7 +48,7 @@
           PDF
         </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="downloadFactura(element.id)"> {{'download'|translate}} </button>
+          <button mat-button (click)="downloadFactura(element.numFactura)"> {{'download'|translate}} </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

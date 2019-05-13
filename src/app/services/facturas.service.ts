@@ -1,6 +1,6 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptionsArgs, RequestOptions, ResponseContentType } from '@angular/http';
 import { Alquiler } from '../models';
 
 @Injectable({
@@ -14,6 +14,10 @@ export class FacturasService {
 
   public readFacturas(clienteId: number): Promise<any> {
     return this.http.get(this.baseUrl + 'facturas/' + clienteId).toPromise();
+  }
+
+  public downloadFacturaPDF(tipo: string, id: string) {
+    return this.http.get(this.baseUrl + 'facturas/pdf/tipo/' + tipo + '/id/' + id, { responseType: ResponseContentType.ArrayBuffer }).toPromise();
   }
 
 }
