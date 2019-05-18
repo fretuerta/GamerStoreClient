@@ -41,15 +41,19 @@ export class AlquileresComponent implements OnInit {
 
   ngOnInit() {
     this.clearAlquiler();
+    this.readArticulos();
+    this.clientesService.readClientes().then( (clientes) => {
+      this.clientes = clientes.json();
+    })
+  }
+
+  readArticulos() {
     this.isLoading = true;
     this.articulosService.readArticulos().then( (articulos) => {
       this.articulos = articulos.json();
       this.updateArticulosToShow();
       this.isLoading = false;
     });
-    this.clientesService.readClientes().then( (clientes) => {
-      this.clientes = clientes.json();
-    })
   }
 
   scanBarCode(): void {
@@ -100,7 +104,7 @@ export class AlquileresComponent implements OnInit {
     this.articulos.forEach(articulo => {
       if (articulo.juego.nombre.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0 ||
         articulo.codigo.toUpperCase().indexOf(this.searchText.toUpperCase()) >= 0) {
-        if (!this.articulosAlquilados.includes(articulo)) {
+        if (!this.articulosAlquilados.includes(articulo) && articulo.cantDispAlquiler > 0) {
           articulo.cantidad = 1;
           this.articulosToShow.push(articulo);
         }
@@ -157,7 +161,7 @@ export class AlquileresComponent implements OnInit {
       this.isLoading = true;
       this.alquileresService.addAlquiler(this.alquiler).then((result)=>{
         this.articulosAlquilados = [];
-        this.updateArticulosToShow();
+        this.readArticulos();
         this.isLoading = false;
       });
     } else {

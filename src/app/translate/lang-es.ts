@@ -14,6 +14,7 @@ export const LANG_ES_TRANS = {
     'editing': 'Editando',
     'es': 'Español',
     'en': 'Inglés',
+    'fr': 'Francés',
     'emptyListError': 'Lista de artículos vacía',
     'home': 'Inicio',
     'edit': 'Editar',

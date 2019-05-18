@@ -54,15 +54,23 @@ export class FacturasComponent implements OnInit {
   }
 
   downloadFactura(numFactura: string) {
-    console.log('numFactura: ', numFactura);
     let tipo = numFactura.charAt(0);
     let id = numFactura.slice(1);
+    this.isLoading = true;
     this.facturasService.downloadFacturaPDF(tipo, id).then((response) => {
       let file = new Blob([response.blob()], { type: 'application/pdf' });
       let fileURL = URL.createObjectURL(file);
+      this.isLoading = false;
       window.open(fileURL);
     })
+  }
 
+  deleteFactura(numFactura) {
+    this.isLoading = true;
+    this.facturasService.deleteFactura(numFactura).then((response) => {
+//      this.isLoading = false;
+      this.pedirFacturas();
+    })
   }
 
   showHelp() {

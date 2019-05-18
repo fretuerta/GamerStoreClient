@@ -89,3 +89,7 @@
 .coverButton {
   min-width: 80px;
 }
+
+mat-spinner {
+  margin: auto;
+}

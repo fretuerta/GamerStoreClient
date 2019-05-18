@@ -55,3 +55,7 @@ mat-form-field, .fieldInLine {
   align-items: center;
   justify-content: space-between;
  }
+
+mat-spinner {
+  margin: auto;
+}

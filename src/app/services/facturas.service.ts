@@ -20,4 +20,7 @@ export class FacturasService {
     return this.http.get(this.baseUrl + 'facturas/pdf/tipo/' + tipo + '/id/' + id, { responseType: ResponseContentType.ArrayBuffer }).toPromise();
   }
 
+  public deleteFactura(numFra: string){
+    return this.http.get(this.baseUrl + 'facturas/delete/' + numFra).toPromise();
+  }
 }

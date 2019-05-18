@@ -48,7 +48,7 @@
           PDF
         </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="downloadFactura(element.numFactura)"> {{'download'|translate}} </button>
+          <button mat-button (click)="deleteFactura(element.numFactura)"> {{'erase'|translate}} </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

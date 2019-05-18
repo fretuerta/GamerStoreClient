@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
   currentLanguage: string;
 
   langs = [{ value: 'es' },
-           { value: 'en' }];
+           { value: 'en' },
+           { value: 'fr'}];
 
   userIsAuthenticated = false;
   userName = "";
