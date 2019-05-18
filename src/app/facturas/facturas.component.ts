@@ -25,8 +25,10 @@ export class FacturasComponent implements OnInit {
               public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.clientesService.readClientes().then( (clientes) => {
       this.clientes = clientes.json();
+      this.isLoading = false;
     });
   }
 
