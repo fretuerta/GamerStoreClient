@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticulosService } from '../services/articulos.service';
 import { Articulo, Alquiler, Cliente, AlquilerDetalle } from '../models';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ClientesService } from '../services/clientes.service';
 import { AlquileresService } from '../services/alquileres.service';
 import { ScanbarcodeComponent } from '../modals/scanbarcode/scanbarcode.component';
@@ -43,14 +43,14 @@ export class AlquileresComponent implements OnInit {
     this.clearAlquiler();
     this.readArticulos();
     this.clientesService.readClientes().then( (clientes) => {
-      this.clientes = clientes.json();
+      this.clientes = clientes;
     })
   }
 
   readArticulos() {
     this.isLoading = true;
     this.articulosService.readArticulos().then( (articulos) => {
-      this.articulos = articulos.json();
+      this.articulos = articulos;
       this.updateArticulosToShow();
       this.isLoading = false;
     });

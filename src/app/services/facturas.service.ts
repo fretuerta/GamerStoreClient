@@ -1,7 +1,6 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Http, RequestOptionsArgs, RequestOptions, ResponseContentType } from '@angular/http';
-import { Alquiler } from '../models';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +9,14 @@ export class FacturasService {
 
   baseUrl: string = environment.baseUrl;
 
-  constructor( protected http: Http) { }
+  constructor( protected http: HttpClient) { }
 
   public readFacturas(clienteId: number): Promise<any> {
     return this.http.get(this.baseUrl + 'facturas/' + clienteId).toPromise();
   }
 
   public downloadFacturaPDF(tipo: string, id: string) {
-    return this.http.get(this.baseUrl + 'facturas/pdf/tipo/' + tipo + '/id/' + id, { responseType: ResponseContentType.ArrayBuffer }).toPromise();
+    return this.http.get(this.baseUrl + 'facturas/pdf/tipo/' + tipo + '/id/' + id, { responseType: 'blob' }).toPromise();
   }
 
   public deleteFactura(numFra: string){

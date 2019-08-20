@@ -43,14 +43,14 @@ export class VentasComponent implements OnInit {
     this.clearVenta();
     this.readArticulos();
     this.clientesService.readClientes().then( (clientes) => {
-      this.clientes = clientes.json();
+      this.clientes = clientes;
     })
   }
 
   readArticulos() {
     this.isLoading = true;
     this.articulosService.readArticulos().then( (articulos) => {
-      this.articulos = articulos.json();
+      this.articulos = articulos;
       this.updateArticulosToShow();
       this.isLoading = false;
     });

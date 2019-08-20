@@ -40,7 +40,7 @@ export class PlataformasComponent implements OnInit {
   readPlataformas() {
     this.isLoading = true;
     this.plataformasService.readPlataformas().then(plataformas => {
-      this.plataformas = plataformas.json().sort((n1, n2) => {
+      this.plataformas = plataformas.sort((n1, n2) => {
         if (n1.nombre > n2.nombre) { return 1; }
         if (n1.nombre < n2.nombre) { return -1; }
         return 0;
@@ -57,7 +57,7 @@ export class PlataformasComponent implements OnInit {
 
   remove(id: number) {
     this.plataformasService.deletePlataforma(id).then( (plataformas) => {
-      this.plataformas = plataformas.json().sort((n1, n2) => {
+      this.plataformas = plataformas.sort((n1, n2) => {
         if (n1.nombre > n2.nombre) { return 1; }
         if (n1.nombre < n2.nombre) { return -1; }
         return 0;
@@ -79,7 +79,7 @@ export class PlataformasComponent implements OnInit {
     this.isLoading = true;
     if (this.element.id) {
       this.plataformasService.updatePlataforma(this.element).then(plataformas => {
-        this.plataformas = plataformas.json().sort((n1, n2) => {
+        this.plataformas = plataformas.sort((n1, n2) => {
           if (n1.nombre > n2.nombre) { return 1; }
           if (n1.nombre < n2.nombre) { return -1; }
           return 0;
@@ -90,7 +90,7 @@ export class PlataformasComponent implements OnInit {
       });
     } else {
       this.plataformasService.addPlataforma(this.element).then(plataformas => {
-        this.plataformas = plataformas.json().sort((n1, n2) => {
+        this.plataformas = plataformas.sort((n1, n2) => {
           if (n1.nombre > n2.nombre) { return 1; }
           if (n1.nombre < n2.nombre) { return -1; }
           return 0;

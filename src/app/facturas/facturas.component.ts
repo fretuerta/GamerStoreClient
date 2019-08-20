@@ -27,7 +27,7 @@ export class FacturasComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.clientesService.readClientes().then( (clientes) => {
-      this.clientes = clientes.json();
+      this.clientes = clientes;
       this.isLoading = false;
     });
   }
@@ -35,7 +35,7 @@ export class FacturasComponent implements OnInit {
   pedirFacturas() {
     this.isLoading = true;
     this.facturasService.readFacturas(this.cliente.id).then( (facturas) => {
-      this.facturas = facturas.json();
+      this.facturas = facturas;
       this.updateFacturasToShow();
       this.isLoading = false;
     });
@@ -60,7 +60,7 @@ export class FacturasComponent implements OnInit {
     let id = numFactura.slice(1);
     this.isLoading = true;
     this.facturasService.downloadFacturaPDF(tipo, id).then((response) => {
-      let file = new Blob([response.blob()], { type: 'application/pdf' });
+      let file = new Blob([response], { type: 'application/pdf' });
       let fileURL = URL.createObjectURL(file);
       this.isLoading = false;
       window.open(fileURL);

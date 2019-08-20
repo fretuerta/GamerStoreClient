@@ -1,6 +1,6 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Venta } from '../models';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class VentasService {
 
   baseUrl: string = environment.baseUrl;
 
-  constructor( protected http: Http) { }
+  constructor( protected http: HttpClient) { }
 
   public readVentas(): Promise<any> {
     return this.http.get(this.baseUrl + 'ventas').toPromise();

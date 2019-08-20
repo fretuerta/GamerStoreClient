@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Plataforma } from '../models';
 
@@ -10,7 +10,7 @@ export class PlataformasService {
 
   baseUrl: string = environment.baseUrl;
 
-  constructor( protected http: Http) { }
+  constructor( protected http: HttpClient) { }
 
   public readPlataformas(): Promise<any> {
     return this.http.get(this.baseUrl + 'plataformas').toPromise();

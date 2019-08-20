@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Juego } from '../models';
 
@@ -10,7 +10,7 @@ export class JuegosService {
 
   baseUrl: string = environment.baseUrl;
 
-  constructor( protected http: Http) { }
+  constructor( protected http: HttpClient) { }
 
   public readJuegos(): Promise<any> {
     return this.http.get(this.baseUrl + 'juegos').toPromise();

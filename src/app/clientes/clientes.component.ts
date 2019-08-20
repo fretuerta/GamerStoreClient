@@ -50,7 +50,7 @@ export class ClientesComponent implements OnInit {
   readClientes() {
     this.isLoading = true;
     this.clientesService.readClientes().then( clientes => {
-      this.clientes = clientes.json();
+      this.clientes = clientes;
       this.updateClientesToShow();
       this.isLoading = false;
     });
@@ -63,7 +63,7 @@ export class ClientesComponent implements OnInit {
 
   remove(id: number) {
     this.clientesService.deleteCliente(id).then( (clientes) => {
-      this.clientes = clientes.json();
+      this.clientes = clientes;
       this.updateClientesToShow();
     });
   }
@@ -81,14 +81,14 @@ export class ClientesComponent implements OnInit {
     this.isLoading = true;
     if (this.element.id) {
       this.clientesService.updateCliente(this.element).then( (clientes) => {
-        this.clientes = clientes.json();
+        this.clientes = clientes;
         this.updateClientesToShow();
         this.editing = false;
         this.isLoading = false;
       });
     } else {
       this.clientesService.addCliente(this.element).then( (clientes) => {
-        this.clientes = clientes.json();
+        this.clientes = clientes;
         this.updateClientesToShow();
         this.editing = false;
         this.isLoading = false;

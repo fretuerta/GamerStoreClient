@@ -58,7 +58,7 @@ export class JuegosComponent implements OnInit {
   readJuegos() {
     this.isLoading = true;
     this.juegosService.readJuegos().then( (juegos) => {
-      this.juegos = juegos.json();
+      this.juegos = juegos;
       this.updateJuegosToShow();
       this.isLoading = false;
     });
@@ -71,7 +71,7 @@ export class JuegosComponent implements OnInit {
 
   remove(id: number) {
     this.juegosService.deleteJuego(id).then( (juegos) => {
-      this.juegos = juegos.json();
+      this.juegos = juegos;
       this.updateJuegosToShow();
     });
   }
@@ -105,14 +105,14 @@ export class JuegosComponent implements OnInit {
     if (this.element.id) {
       this.juegosService.updateJuego(this.element).then( (juegos) => {
         this.editing = false;
-        this.juegos = juegos.json();
+        this.juegos = juegos;
         this.updateJuegosToShow();
         this.isLoading = false;
       });
     } else {
       this.juegosService.addJuego(this.element).then( (juegos) => {
         this.editing = false;
-        this.juegos = juegos.json();
+        this.juegos = juegos;
         this.updateJuegosToShow();
         this.isLoading = false;
       });

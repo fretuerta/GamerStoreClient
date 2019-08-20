@@ -1,4 +1,5 @@
-import { HttpModule } from '@angular/http';
+//import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LOCALE_ID, NgModule, Component } from '@angular/core';
 
 import { registerLocaleData, APP_BASE_HREF } from '@angular/common';
@@ -26,11 +27,10 @@ import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ScanbarcodeComponent } from './modals/scanbarcode/scanbarcode.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FacturasComponent } from './facturas/facturas.component';
 import { HelpComponent } from './modals/help/help.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { AuthGuard } from './auth/auth.guard';
 
@@ -54,9 +54,10 @@ const appRoutingProviders: any = [];
     SignupComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpModule,
+//    HttpModule,
     MatComponentsModule,
     DragDropModule,
     MatDialogModule,
@@ -76,14 +77,14 @@ const appRoutingProviders: any = [];
   ],
   entryComponents: [ ScanbarcodeComponent, HelpComponent ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     appRoutingProviders,
     { provide: LOCALE_ID, useValue: 'es'},
     TranslateService,
     TRANSLATION_PROVIDERS,
     TranslatePipe,
     AuthGuard,
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true} },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true} }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthData } from '../models';
 import { Subject } from 'rxjs';
 
@@ -11,8 +11,9 @@ export class AuthService {
 
   baseUrl: string = environment.baseUrl;
 
-  private token: string;
+  private token: string = '';
   getToken() { return this.token }
+
   setToken(token: string, authUserName: string) {
     this.token = token;
     this.saveAuthData(token, new Date( new Date().getTime() + (1000 * 60 * 60 * 10) ), authUserName )
@@ -21,7 +22,7 @@ export class AuthService {
   private authStatusListener = new Subject<AuthData>();
   public userName = "";
   
-  constructor(protected http: Http) { }
+  constructor(protected http: HttpClient) { }
 
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
@@ -47,7 +48,7 @@ export class AuthService {
   }
 
   logout() {
-    this.token = null;
+    this.token = '';
     this.clearAuthData();
     this.authStatusListener.next({authenticated: false, email: ''});
   }

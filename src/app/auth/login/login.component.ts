@@ -20,14 +20,21 @@ export class LoginComponent {
     this.isLoading = true;
     this.authService.login(form.value.email, form.value.password)
     .then((result) => {
-      let tokenText = result.text();
-      if (tokenText != null && tokenText != '' ) {
+      let tokenText = JSON.stringify(result);
+      if (tokenText != null && tokenText != undefined && tokenText != '' ) {
         this.authService.setToken(tokenText, form.value.email);
         this.router.navigateByUrl('');
       }
     })
     .catch((err) => {
       this.isLoading = false;
+      if (err.status == 200) {
+        let tokenText = err.error.text;
+        if (tokenText != null && tokenText != undefined && tokenText != '' ) {
+          this.authService.setToken(tokenText, form.value.email);
+          this.router.navigateByUrl('');
+        }
+      }
       if (err.status == 404) {
         this.emailError = true;
         setTimeout(()=>{ this.emailError = false; }, 2000)

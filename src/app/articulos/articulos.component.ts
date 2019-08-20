@@ -33,9 +33,9 @@ export class ArticulosComponent implements OnInit {
 
   ngOnInit() {
     this.plataformasService.readPlataformas().then( (plataformas) => {
-      this.plataformas = plataformas.json();
+      this.plataformas = plataformas;
       this.juegosService.readJuegos().then( (juegos) => {
-        this.juegos = juegos.json();
+        this.juegos = juegos;
         this.readArticulos();
       } );
     });
@@ -63,7 +63,7 @@ export class ArticulosComponent implements OnInit {
   readArticulos() {
     this.isLoading = true;
     this.articulosService.readArticulos().then(articulos => {
-      this.articulos = articulos.json();
+      this.articulos = articulos;
       this.updateArticulosToShow();
       this.isLoading = false;
     });
