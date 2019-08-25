@@ -83,5 +83,7 @@ export const LANG_ES_TRANS = {
     'clientesHelp': 'Relación de clientes. Se necesita tener al cliente registrado para poder realizar una venta o alquiler.',
     'alquileresHelp': 'Se puede localizar un artículo pulsando en el boton Scanear y pasar el código de barras por la cámara. Cuando ya estén los articulos en la lista Alquilado, pulsar el botón Guardar para finalizar.',
     'ventasHelp': 'Se puede localizar un artículo pulsando en el boton Scanear y pasar el código de barras por la cámara. Cuando ya estén los articulos en la lista Vendido, pulsar el botón Guardar para finalizar.',
-    'facturasHelp': 'Resumen de facturación por cliente.'
+    'facturasHelp': 'Resumen de facturación por cliente.',
+
+    'deleteWarning': 'Si elimina el registro también se eliminarán los datos relacionados.'
 };

@@ -3,6 +3,7 @@ import { JuegosService } from '../services/juegos.service';
 import { MatDialog } from '@angular/material';
 import { ScanbarcodeComponent } from '../modals/scanbarcode/scanbarcode.component';
 import { HelpComponent } from '../modals/help/help.component';
+import { TranslateService } from '../translate/translate.service';
 
 @Component({
   selector: 'app-juegos',
@@ -24,7 +25,8 @@ export class JuegosComponent implements OnInit {
   isLoading = false;
 
   constructor( protected juegosService: JuegosService,
-               public dialog: MatDialog) { }
+               public dialog: MatDialog,
+               protected translateService: TranslateService) { }
 
   ngOnInit() { this.readJuegos(); }
 
@@ -70,6 +72,7 @@ export class JuegosComponent implements OnInit {
   }
 
   remove(id: number) {
+    if ( !confirm(this.translateService.instant('deleteWarning')) ) return ;
     this.juegosService.deleteJuego(id).then( (juegos) => {
       this.juegos = juegos;
       this.updateJuegosToShow();

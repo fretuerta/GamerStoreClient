@@ -83,5 +83,7 @@ export const LANG_EN_TRANS = {
     'clientesHelp': 'Customer list. You need to have the registered customer to be able to make a sale or rent.',
     'alquileresHelp': 'An article can be located by clicking on the Scan button and passing the barcode through the camera. When the items are in the list, press the save button to finish.',
     'ventasHelp': 'An article can be located by clicking on the Scan button and passing the barcode through the camera. When the items are in the list, press the save button to finish.',
-    'facturasHelp': 'Billing summary by customer.'
+    'facturasHelp': 'Billing summary by customer.',
+
+    'deleteWarning': 'If you delete the record, the related data will also be deleted.'
 };

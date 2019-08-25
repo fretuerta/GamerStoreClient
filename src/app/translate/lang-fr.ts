@@ -83,5 +83,7 @@ export const LANG_FR_TRANS = {
     'clientesHelp': 'Relation client Vous devez avoir le client enregistré pour pouvoir effectuer une vente ou une location.',
     'alquileresHelp': 'Vous pouvez localiser un article en cliquant sur le bouton Numériser et en passant le code à barres dans la caméra. Lorsque les articles sont déjà dans la liste louée, appuyez sur le bouton Enregistrer pour terminer.',
     'ventasHelp': 'Vous pouvez localiser un article en cliquant sur le bouton Numériser et en passant le code à barres dans la caméra. Lorsque les articles sont déjà dans la liste Vendu, appuyez sur le bouton Enregistrer pour terminer.',
-    'facturasHelp': 'Récapitulatif de facturation par client.'
+    'facturasHelp': 'Récapitulatif de facturation par client.',
+
+    'deleteWarning': "Si vous supprimez l'enregistrement, les données associées seront également supprimées."
 };

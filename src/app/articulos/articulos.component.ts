@@ -6,6 +6,7 @@ import { Juego, Plataforma, Articulo } from 'src/app/models';
 import { MatDialog } from '@angular/material';
 import { ScanbarcodeComponent } from '../modals/scanbarcode/scanbarcode.component';
 import { HelpComponent } from '../modals/help/help.component';
+import { TranslateService } from '../translate/translate.service';
 
 @Component({
   selector: 'app-articulos',
@@ -29,7 +30,8 @@ export class ArticulosComponent implements OnInit {
   constructor(protected articulosService: ArticulosService,
               protected plataformasService: PlataformasService,
               protected juegosService: JuegosService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              protected translateService: TranslateService) { }
 
   ngOnInit() {
     this.plataformasService.readPlataformas().then( (plataformas) => {
@@ -90,6 +92,7 @@ export class ArticulosComponent implements OnInit {
   }
 
   remove(id: number) {
+    if ( !confirm(this.translateService.instant('deleteWarning')) ) return ;
     this.articulosService.deleteArticulo(id).then( () => {
       this.readArticulos();
     });

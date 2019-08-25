@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlataformasService } from '../services/plataformas.service';
 import { MatDialog } from '@angular/material';
 import { HelpComponent } from '../modals/help/help.component';
+import { TranslateService } from '../translate/translate.service';
 
 @Component({
   selector: 'app-plataformas',
@@ -19,7 +20,8 @@ export class PlataformasComponent implements OnInit {
   isLoading = false;
 
   constructor( protected plataformasService: PlataformasService,
-      public dialog: MatDialog) { }
+      public dialog: MatDialog,
+      protected translateService: TranslateService) { }
 
   ngOnInit() { this.readPlataformas(); }
 
@@ -56,6 +58,7 @@ export class PlataformasComponent implements OnInit {
   }
 
   remove(id: number) {
+    if ( !confirm(this.translateService.instant('deleteWarning')) ) return ;
     this.plataformasService.deletePlataforma(id).then( (plataformas) => {
       this.plataformas = plataformas.sort((n1, n2) => {
         if (n1.nombre > n2.nombre) { return 1; }
